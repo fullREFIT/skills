@@ -1,0 +1,31 @@
+{
+  "id": "editorial-studio",
+  "label": "Editorial Studio",
+  "useWhen": "Narrative reports, client stories, workshops, and educational decks",
+  "name": "Editorial Studio",
+  "wordmark": "Editorial Studio",
+  "tagline": "Ideas made clear enough to act on.",
+  "colors": {
+    "dark": "#24211D",
+    "dark2": "#3B3731",
+    "canvas": "#F6F3EE",
+    "surface": "#FFFFFF",
+    "text": "#24211D",
+    "muted": "#6C665D",
+    "primary": "#46614F",
+    "primaryHover": "#37503F",
+    "secondary": "#B7784A",
+    "border": "#E4DDD1"
+  },
+  "fonts": {
+    "body": "Inter, system-ui, sans-serif",
+    "display": "Cormorant Garamond, Georgia, serif",
+    "mono": "IBM Plex Mono, monospace",
+    "googleCss": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap"
+  },
+  "rules": [
+    "Let typography carry the personality",
+    "Use green for action and clay as a restrained secondary accent",
+    "Keep imagery and evidence dominant"
+  ]
+}

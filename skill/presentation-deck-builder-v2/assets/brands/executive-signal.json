@@ -1,0 +1,31 @@
+{
+  "id": "executive-signal",
+  "label": "Executive Signal",
+  "useWhen": "Board briefings, strategy, metrics, and high-clarity executive decisions",
+  "name": "Executive Signal",
+  "wordmark": "EXECUTIVE SIGNAL",
+  "tagline": "Decisions with a visible evidence trail.",
+  "colors": {
+    "dark": "#0B132B",
+    "dark2": "#17213D",
+    "canvas": "#F4F7FB",
+    "surface": "#FFFFFF",
+    "text": "#111827",
+    "muted": "#667085",
+    "primary": "#2F6BFF",
+    "primaryHover": "#1F55D5",
+    "secondary": "#2DD4BF",
+    "border": "#DCE3EE"
+  },
+  "fonts": {
+    "body": "Inter, system-ui, sans-serif",
+    "display": "Inter, system-ui, sans-serif",
+    "mono": "IBM Plex Mono, monospace",
+    "googleCss": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
+  },
+  "rules": [
+    "Lead with decisions and metrics",
+    "Use cyan only as a secondary signal",
+    "Avoid decorative effects"
+  ]
+}

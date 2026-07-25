@@ -1,0 +1,32 @@
+{
+  "id": "tab-squirrel",
+  "label": "TabSquirrel",
+  "useWhen": "Warm, calm, organic technology and context-recovery stories",
+  "name": "TabSquirrel",
+  "wordmark": "TabSquirrel",
+  "tagline": "Close your tabs. Keep your context.",
+  "colors": {
+    "dark": "#1A1A1A",
+    "dark2": "#2E4036",
+    "canvas": "#F2F0E9",
+    "surface": "#FFFFFF",
+    "text": "#1A1A1A",
+    "muted": "#6B6C66",
+    "primary": "#CC5833",
+    "primaryHover": "#A94729",
+    "secondary": "#2E4036",
+    "border": "#DDD8CE"
+  },
+  "fonts": {
+    "body": "Plus Jakarta Sans, system-ui, sans-serif",
+    "display": "Plus Jakarta Sans, system-ui, sans-serif",
+    "mono": "IBM Plex Mono, monospace",
+    "googleCss": "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+  },
+  "rules": [
+    "Warm and restrained",
+    "No cartoon mascot energy",
+    "Use burnt orange for action and forest green for secondary structure"
+  ],
+  "provenance": "Published TabSquirrel brand reference, normalized for this open-source preset."
+}

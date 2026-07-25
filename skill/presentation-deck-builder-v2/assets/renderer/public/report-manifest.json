@@ -1,0 +1,12 @@
+{
+  "defaultReport": "sample-report",
+  "reports": [
+    {
+      "slug": "sample-report",
+      "title": "The operating decision, made visible",
+      "description": "Synthetic sample deck for Presentation Deck Builder v2.",
+      "jsonPath": "/reports/sample-report.json",
+      "publicPath": "/report/sample-report"
+    }
+  ]
+}

@@ -1,0 +1,1175 @@
+/*
+ * full/REFIT — Carbon Forge presenter system (v2).
+ *
+ * Product priority: a screen-share-safe presentation website. In presenter mode the app
+ * is locked to the viewport (no page scroll), each slide renders into a fixed STAGE, and
+ * the fit-engine (fit-engine.ts) selects a density class so the slide is fully contained
+ * — never clipped, never split above/below the fold. CSS never relies on overflow:hidden
+ * as the fit mechanism; it is only a last-resort guard.
+ *
+ * Brand: fixed Carbon Forge palette. No gradients. No italics. Forge Red is the primary
+ * (Layer 1 / systems / action) accent; Forge Gold is the restrained Layer 2 (teams) accent
+ * only — never decorative, never paragraph text on white. Dark slides use Ash White body.
+ */
+
+:root {
+  --color-carbon-core: #121010;
+  --color-forge-red: #d43b2a;
+  --color-forge-gold: #ffb400;
+  --color-forge-dark: #333130;
+  --color-ash-white: #f2f0ee;
+  --color-pure-white: #ffffff;
+  --color-echo: #878e88;
+  --color-soft-gray: #e5e3e0;
+
+  --bg-page: var(--color-ash-white);
+  --bg-surface: var(--color-pure-white);
+  --bg-dark: var(--color-carbon-core);
+  --bg-dark-2: var(--color-forge-dark);
+
+  --text-main: var(--color-carbon-core);
+  --text-muted: var(--color-echo);
+  --text-on-dark: var(--color-ash-white);
+  --text-inverse-strong: var(--color-pure-white);
+
+  --accent-primary: var(--color-forge-red);
+  --accent-primary-hover: #b8301f;
+  --accent-secondary: var(--color-forge-gold);
+  --border-default: var(--color-soft-gray);
+
+  --font-body: 'Outfit', Arial, sans-serif;
+  --font-display: 'Outfit', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --radius-card: 0.75rem;
+  --radius-control: 0.5rem;
+  --header-h: 56px;
+  --footer-h: 52px;
+}
+
+/* ----- Density tokens -------------------------------------------------------
+ * The fit-engine sets data-density on .stage. Every size that affects slide height
+ * reads one of these tokens, so stepping density is the single lever that shrinks a
+ * slide to fit. spacious → standard → compact → critical-compact. */
+.stage {
+  --d-pad-block: 2.25rem;
+  --d-pad-inline: 3rem;
+  --d-cover-h1: 5.75rem;
+  --d-h1-sub: 3.7rem;
+  --d-thesis: 1.55rem;
+  --d-body: 1.28rem;
+  --d-gap: 1.3rem;
+  --d-colgap: 3rem;
+  --d-cardpad: 1.1rem;
+  --d-stat: 2.2rem;
+}
+.stage[data-density='standard'] {
+  --d-pad-block: 1.9rem;
+  --d-pad-inline: 2.5rem;
+  --d-cover-h1: 4.9rem;
+  --d-h1-sub: 3.2rem;
+  --d-thesis: 1.4rem;
+  --d-body: 1.18rem;
+  --d-gap: 1.05rem;
+  --d-colgap: 2.4rem;
+  --d-cardpad: 0.98rem;
+  --d-stat: 1.9rem;
+}
+.stage[data-density='compact'] {
+  --d-pad-block: 1.5rem;
+  --d-pad-inline: 1.9rem;
+  --d-cover-h1: 3.9rem;
+  --d-h1-sub: 2.75rem;
+  --d-thesis: 1.25rem;
+  --d-body: 1.08rem;
+  --d-gap: 0.85rem;
+  --d-colgap: 1.7rem;
+  --d-cardpad: 0.85rem;
+  --d-stat: 1.6rem;
+}
+/* Floor: body never below ~16px, headline ~2.35rem — always legible on screen-share. */
+.stage[data-density='critical-compact'] {
+  --d-pad-block: 1.15rem;
+  --d-pad-inline: 1.4rem;
+  --d-cover-h1: 3.1rem;
+  --d-h1-sub: 2.35rem;
+  --d-thesis: 1.12rem;
+  --d-body: 1rem;
+  --d-gap: 0.66rem;
+  --d-colgap: 1.3rem;
+  --d-cardpad: 0.72rem;
+  --d-stat: 1.35rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text-main);
+  background: var(--bg-page);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  overflow: hidden; /* presenter is the only mode: the app owns the viewport, nothing scrolls */
+}
+
+/* Brand rule: no italics anywhere. */
+em,
+i,
+cite,
+address,
+dfn,
+var {
+  font-style: normal;
+  font-weight: 600;
+}
+
+button,
+a {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 40;
+  transform: translateY(-200%);
+  padding: 0.6rem 0.8rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-control);
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* ----- App shell: viewport-locked column ---------------------------------- */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+/* ----- Top chrome (minimal in presenter) ---------------------------------- */
+.site-header {
+  position: relative;
+  z-index: 6;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  min-height: var(--header-h);
+  padding: 0.55rem 1rem 0.7rem;
+  color: var(--text-main);
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-default);
+}
+.site-header__brand,
+.site-header__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+.site-header__topic {
+  overflow: hidden;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.top-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--border-default);
+}
+.top-progress span {
+  display: block;
+  height: 100%;
+  background: var(--accent-primary);
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  color: currentColor;
+  font-family: var(--font-display);
+  font-weight: 400;
+  white-space: nowrap;
+}
+.wordmark__slash {
+  color: var(--accent-primary);
+  font-weight: 400;
+}
+.wordmark__refit {
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+/* ----- Stage + slide ------------------------------------------------------- */
+.report-app {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* last-resort guard only; the fit-engine prevents real overflow */
+  background: var(--bg-page);
+}
+
+/* The slide carries the safe-area inset as padding so the engine can measure its true
+ * height (slide.scrollHeight) against the fixed stage height. */
+.slide {
+  width: 100%;
+  max-width: calc(1440px + 2 * var(--d-pad-inline));
+  margin: auto;
+  padding: var(--d-pad-block) var(--d-pad-inline);
+}
+.slide--dark {
+  color: var(--text-on-dark);
+  background: var(--bg-dark);
+}
+.stage:has(.slide--dark) {
+  background: var(--bg-dark);
+}
+/* Dark slides: body copy is Ash White, never Echo gray. */
+.slide--dark p,
+.slide--dark li,
+.slide--dark .body-list,
+.slide--dark .cover-summary,
+.slide--dark .thesis {
+  color: var(--text-on-dark);
+}
+
+.cover-grid,
+.summary-grid,
+.slide__split,
+.decision-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(300px, 0.7fr);
+  gap: var(--d-colgap);
+  align-items: center;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.slide__narrow {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+/* NOTE: two columns are the SPACE-EFFICIENT layout on a wide presenter viewport
+ * (narrative beside evidence → height = max(left, right)). Collapsing to a single column
+ * stacks everything and makes the slide TALLER, so density steps keep two columns and
+ * shrink type/gaps/padding instead. Single-column is only for narrow widths / reader
+ * (see the max-width media query and reader-mode rules below). */
+
+/* ----- Typography ---------------------------------------------------------- */
+.section-label {
+  margin: 0 0 0.85rem;
+  color: var(--accent-primary);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.slide--dark .section-label {
+  color: var(--accent-primary);
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+/* Default headline = the medium scale (summary / source / decision / methodology /
+ * closing). Only the cover uses the oversized hero scale. Keeping non-cover headlines
+ * medium is the single biggest height saving on dense slides. */
+h1 {
+  max-width: 18ch;
+  margin-bottom: 0.9rem;
+  font-family: var(--font-display);
+  font-size: var(--d-h1-sub);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.03;
+  text-wrap: balance;
+}
+.slide--cover h1 {
+  max-width: 15ch;
+  font-size: var(--d-cover-h1);
+  line-height: 1;
+}
+
+h2 {
+  font-size: 1.02rem;
+  line-height: 1.2;
+}
+h3 {
+  font-size: 0.98rem;
+  line-height: 1.25;
+}
+
+.cover-subtitle,
+.thesis {
+  max-width: 44ch;
+  margin: 0 0 0.6rem;
+  color: var(--text-muted);
+  font-size: var(--d-thesis);
+  font-weight: 600;
+  line-height: 1.3;
+}
+.slide--dark .cover-subtitle {
+  color: var(--text-inverse-strong);
+}
+
+.cover-summary,
+.why-block p,
+.body-list p {
+  max-width: 64ch;
+  font-size: var(--d-body);
+}
+
+.item-kicker,
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.7rem;
+}
+.item-kicker span,
+.tag-list span {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.5rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-control);
+}
+.slide--dark .item-kicker span {
+  color: var(--text-on-dark);
+  border-color: var(--bg-dark-2);
+}
+
+.why-block {
+  margin: var(--d-gap) 0;
+  padding-left: 0.9rem;
+  border-left: 3px solid var(--accent-primary);
+}
+.why-block h2 {
+  margin-bottom: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+}
+
+.takeaway {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: var(--d-cardpad);
+  font-size: var(--d-body);
+  font-weight: 600;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-left: 3px solid var(--accent-primary);
+  border-radius: var(--radius-control);
+}
+.takeaway span,
+.decision-preview > span,
+.metric-pair span,
+.risk-list span,
+.next-step span {
+  color: var(--accent-primary);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.summary-side,
+.slide__split aside,
+.decision-panel,
+.cover-side {
+  display: grid;
+  gap: var(--d-gap);
+  align-content: center;
+}
+
+/* ----- Stats --------------------------------------------------------------- */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.6rem;
+}
+.stat-card {
+  padding: var(--d-cardpad);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-control);
+}
+.slide--dark .stat-card {
+  color: var(--text-on-dark);
+  background: var(--bg-dark-2);
+  border-color: var(--bg-dark-2);
+}
+.stat-card span {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.slide--dark .stat-card span {
+  color: var(--text-on-dark);
+}
+.stat-card strong {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--d-stat);
+  font-weight: 700;
+  line-height: 1.05;
+}
+/* Layer 1 (systems) = Forge Red top rule. Layer 2 (teams) = Forge Gold left rule. */
+.stat-card[data-emphasis='red'] {
+  border-top: 3px solid var(--accent-primary);
+}
+.stat-card[data-emphasis='gold'] {
+  border-left: 3px solid var(--accent-secondary);
+}
+
+/* ----- Cards --------------------------------------------------------------- */
+.highlight-list {
+  display: grid;
+  gap: 0.6rem;
+}
+.mini-card,
+.source-list,
+.decision-preview,
+.embed-card {
+  padding: var(--d-cardpad);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-control);
+}
+.mini-card h3 {
+  margin-bottom: 0.25rem;
+}
+.mini-card p,
+.source-card small {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.source-list h2 {
+  margin-bottom: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+}
+.source-card {
+  display: grid;
+  gap: 0.2rem;
+  margin-top: 0.5rem;
+  padding: 0.7rem;
+  color: var(--text-main);
+  text-decoration: none;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-control);
+}
+.source-card:hover {
+  border-color: var(--accent-primary);
+}
+.source-card span {
+  color: var(--accent-primary);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.decision-preview {
+  border-top: 3px solid var(--accent-primary);
+}
+.decision-preview p {
+  margin: 0.35rem 0 0;
+  font-weight: 600;
+}
+/* Forge Gold verdict marker — legitimate Layer 2 accent, reads on the dark decision slide. */
+.verdict {
+  display: inline-block;
+  color: var(--accent-secondary);
+  font-family: var(--font-mono);
+}
+.decision-panel {
+  padding: var(--d-cardpad);
+  background: var(--bg-dark-2);
+  border: 1px solid var(--bg-dark-2);
+  border-radius: var(--radius-card);
+}
+.metric-pair,
+.risk-list,
+.next-step {
+  display: grid;
+  gap: 0.3rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--color-echo);
+}
+.next-step {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.metric-pair strong,
+.risk-list p,
+.next-step p {
+  margin: 0;
+  color: var(--text-on-dark);
+  font-size: var(--d-body);
+}
+
+.body-list {
+  display: grid;
+  gap: 0.6rem;
+}
+
+/* ----- Embeds (always degrade to a link) ----------------------------------- */
+.embed-card iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  background: var(--bg-dark);
+  border-radius: var(--radius-control);
+}
+.embed-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-control);
+}
+.embed-card blockquote {
+  margin: 0;
+}
+.embed-card figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
+/* ----- Centered media layout (tweet / video / github source) --------------- */
+.media-centered {
+  display: grid;
+  gap: var(--d-gap);
+  justify-items: center;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+.media-centered .section-label {
+  margin: 0;
+}
+.media-caption {
+  margin: 0;
+  max-width: 42ch;
+  font-family: var(--font-display);
+  font-size: var(--d-h1-sub);
+  font-weight: 700;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+.media-note {
+  max-width: 60ch;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--d-body);
+}
+.media-embed {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+}
+.media-embed .embed-card--youtube {
+  width: min(880px, 100%);
+}
+
+/* GitHub rich card: repo social-preview image + token fallback chain + Open repo button. */
+.embed-card--github {
+  display: grid;
+  gap: 0.9rem;
+  justify-items: center;
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+.gh-card {
+  width: min(760px, 100%);
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  text-align: left;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-top: 4px solid var(--accent-primary); /* Carbon Forge accent — replaces GitHub's green/yellow bar */
+  border-radius: var(--radius-card);
+}
+.gh-card__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: start;
+}
+.gh-card__avatar {
+  grid-column: 2;
+  grid-row: 1;
+  width: clamp(64px, 7vw, 96px);
+  height: clamp(64px, 7vw, 96px);
+  object-fit: cover;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-control);
+}
+.gh-card__id {
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+}
+.gh-card__name {
+  margin: 0 0 0.4rem;
+  color: var(--text-main);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+  font-weight: 400;
+  line-height: 1.05;
+  word-break: break-word;
+}
+.gh-card__name b {
+  font-weight: 700;
+}
+.gh-card__desc {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--d-body);
+  line-height: 1.4;
+}
+.gh-card__desc:empty {
+  display: none;
+}
+.gh-card__mark {
+  display: none;
+}
+.gh-card__metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-top: 1.1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-default);
+}
+.gh-metric {
+  display: grid;
+  gap: 0.15rem;
+}
+.gh-metric strong {
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  font-size: clamp(1.1rem, 2vw, 1.55rem);
+  font-weight: 700;
+  line-height: 1;
+}
+.gh-metric span {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.embed-card--github .button {
+  margin: 0;
+}
+
+/* Live X / tweet embed: fixed-height internal-scroll container (matches the reference). */
+.embed-card--tweet-live {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: center;
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+.tweet-frame {
+  width: min(550px, 100%);
+  height: min(58vh, 540px);
+  overflow: auto;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-card);
+}
+.tweet-frame iframe {
+  width: 100%;
+  min-height: 540px;
+  border: 0;
+  background: var(--bg-surface); /* white while the embed loads — never a black box */
+}
+
+/* ----- Footer: tab strip + nav hint --------------------------------------- */
+/* Per-item evidence-tab bar (top-right), below the header. Reference-style. */
+.item-bar {
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 44px;
+  padding: 0.35rem 1rem;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-default);
+}
+.report-app.is-focus-mode .item-bar {
+  display: none;
+}
+.item-bar__crumb {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  min-width: 0;
+}
+.item-bar__rank {
+  flex-shrink: 0;
+  color: var(--accent-primary);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.item-bar__title {
+  overflow: hidden;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stage-footer {
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  min-height: var(--footer-h);
+  padding: 0.5rem 1rem;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-default);
+}
+.report-app.is-focus-mode .stage-footer {
+  display: none;
+}
+.tab-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  min-width: 0;
+}
+.tab-strip__empty {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+.footer-hint {
+  flex-shrink: 0;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  white-space: nowrap;
+}
+
+.tab-button,
+.chrome-button,
+.button {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 0.7rem;
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-control);
+}
+.tab-button[aria-current='true'],
+.chrome-button--strong,
+.button--primary {
+  color: var(--text-inverse-strong);
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+.button--primary:hover,
+.chrome-button--strong:hover {
+  background: var(--accent-primary-hover);
+  border-color: var(--accent-primary-hover);
+}
+
+/* ----- Cover controls (navigation made explicit on the home page) ---------- */
+.cover-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: var(--d-gap) 0 0.4rem;
+}
+.cover-controls kbd {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.6rem;
+  color: var(--text-on-dark);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--bg-dark-2);
+  border: 1px solid var(--color-echo);
+  border-radius: var(--radius-control);
+}
+.cover-controls kbd b {
+  color: var(--accent-secondary);
+  font-weight: 700;
+}
+.nav-hint {
+  margin: 0;
+  color: var(--text-on-dark);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+
+/* ----- Edge handle + off-canvas sidebar ----------------------------------- */
+.edge-handle {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  z-index: 18;
+  width: 14px;
+  height: 76px;
+  padding: 0;
+  transform: translateY(-50%);
+  background: var(--accent-primary);
+  border: 0;
+  border-radius: 0 var(--radius-control) var(--radius-control) 0;
+  box-shadow: 0 1px 6px rgba(18, 16, 16, 0.25);
+}
+.edge-handle::before {
+  content: '';
+  display: block;
+  width: 3px;
+  height: 28px;
+  margin: 0 auto;
+  background: var(--color-pure-white);
+  border-radius: 2px;
+  opacity: 0.85;
+}
+.edge-handle:hover {
+  width: 18px;
+  background: var(--accent-primary-hover);
+}
+.report-app.is-focus-mode ~ .edge-handle,
+body.is-sidebar-open .edge-handle {
+  /* hidden while focus mode hides chrome, or once the drawer is open */
+  display: none;
+}
+
+/* ----- Touch navigation D-pad ----------------------------------------------
+ * Phones/tablets have no arrow keys, so a faint translucent diamond gives the
+ * same four moves (←/→ tabs, ↑/↓ items). Hidden by default; shown only on
+ * coarse-pointer (touch) devices, so desktop presenters never see it. Swipe
+ * gestures do the same job — this is the discoverable, always-there fallback. */
+.touch-nav {
+  display: none;
+}
+@media (pointer: coarse) {
+  .touch-nav {
+    position: fixed;
+    right: 14px;
+    bottom: calc(var(--footer-h) + 14px);
+    z-index: 19;
+    display: grid;
+    grid-template-columns: repeat(3, 34px);
+    grid-template-rows: repeat(3, 34px);
+    gap: 2px;
+    opacity: 0.32;
+    transition: opacity 0.2s ease;
+  }
+  .touch-nav:active,
+  .touch-nav:focus-within {
+    opacity: 0.85;
+  }
+  .touch-nav__btn {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    line-height: 1;
+    color: var(--color-ash-white);
+    background: rgba(18, 16, 16, 0.62);
+    border: 1px solid rgba(242, 240, 238, 0.28);
+    border-radius: var(--radius-control);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .touch-nav__btn:active {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+  }
+  .touch-nav__btn--up {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .touch-nav__btn--left {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .touch-nav__btn--right {
+    grid-column: 3;
+    grid-row: 2;
+  }
+  .touch-nav__btn--down {
+    grid-column: 2;
+    grid-row: 3;
+  }
+  /* hide while the drawer is open or chrome is hidden, matching the edge handle */
+  body.is-sidebar-open .touch-nav,
+  .report-app.is-focus-mode ~ .touch-nav {
+    display: none;
+  }
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 26;
+  width: 300px;
+  max-width: 86vw;
+  transform: translateX(-100%);
+  transition: transform 0.22s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1rem 0.85rem;
+  overflow-y: auto;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border-default);
+}
+.sidebar.is-open {
+  transform: translateX(0);
+}
+.sidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+.sidebar__title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+}
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+  background: rgba(18, 16, 16, 0.5);
+}
+
+.rail-item {
+  display: grid;
+  grid-template-columns: 2.75rem 1fr;
+  gap: 0.6rem;
+  align-items: center;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.55rem 0.6rem;
+  color: var(--text-main);
+  text-align: left;
+  background: var(--bg-page);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-control);
+}
+.rail-item[aria-current='true'] {
+  background: var(--bg-surface);
+  border-color: var(--accent-primary);
+}
+.rail-item__rank {
+  color: var(--accent-primary);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.rail-item__title {
+  overflow: hidden;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ----- Overlays (help + quick jump) --------------------------------------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(18, 16, 16, 0.92);
+}
+.overlay__panel {
+  width: min(760px, 100%);
+  max-height: min(760px, 90vh);
+  overflow: auto;
+  padding: 1rem;
+  color: var(--text-main);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-card);
+}
+.overlay__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.shortcut-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 0.7rem;
+  margin: 0;
+}
+.shortcut-grid div,
+.jump-option {
+  padding: 0.8rem;
+  background: var(--bg-page);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-control);
+}
+.shortcut-grid dt {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+.shortcut-grid dd {
+  margin: 0.3rem 0 0;
+  color: var(--text-muted);
+}
+.jump-list {
+  display: grid;
+  gap: 0.55rem;
+}
+.jump-option {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 0.2rem 0.7rem;
+  width: 100%;
+  color: var(--text-main);
+  text-align: left;
+}
+.jump-option span {
+  grid-row: span 2;
+  color: var(--accent-primary);
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+.jump-option small {
+  color: var(--text-muted);
+}
+
+/* ----- Small screens -------------------------------------------------------- */
+@media (max-width: 860px) {
+  .site-header {
+    grid-template-columns: 1fr auto;
+  }
+  .cover-grid,
+  .summary-grid,
+  .slide__split,
+  .decision-grid {
+    grid-template-columns: 1fr;
+    gap: var(--d-gap);
+  }
+  .footer-hint {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

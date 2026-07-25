@@ -1,0 +1,31 @@
+{
+  "id": "example-brand",
+  "label": "Example Brand",
+  "useWhen": "Replace with the audience and context this profile serves",
+  "name": "Example Brand",
+  "wordmark": "Example Brand",
+  "tagline": "Replace with a verified tagline or remove this field",
+  "colors": {
+    "dark": "#17201C",
+    "dark2": "#29352F",
+    "canvas": "#F3F5F2",
+    "surface": "#FFFFFF",
+    "text": "#17201C",
+    "muted": "#626A65",
+    "primary": "#1F6F50",
+    "primaryHover": "#185A40",
+    "secondary": "#B26A3C",
+    "border": "#D8DDD9"
+  },
+  "fonts": {
+    "body": "Geist, Arial, sans-serif",
+    "display": "Geist, Arial, sans-serif",
+    "mono": "Geist Mono, monospace",
+    "googleCss": "https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&family=Geist+Mono:wght@500;600&display=swap"
+  },
+  "rules": [
+    "Replace with a real visual rule",
+    "Keep primary actions visually distinct",
+    "Do not invent a logo"
+  ]
+}

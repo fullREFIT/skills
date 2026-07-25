@@ -1,0 +1,155 @@
+{
+  "version": "1.0.0",
+  "slug": "sample-operator-briefing",
+  "title": "The operating decision, made visible",
+  "subtitle": "A practical presentation briefing",
+  "topic": "A sample decision briefing",
+  "date": "2026-01-01",
+  "brand": {
+    "name": "full/REFIT",
+    "theme": "carbon-forge",
+    "wordmark": {
+      "fullText": "full/REFIT",
+      "slashColor": "#D43B2A",
+      "tagline": "Systems built. Teams equipped."
+    }
+  },
+  "modeDefaults": {
+    "defaultMode": "presenter",
+    "showHelpHint": true,
+    "showProgressRail": true
+  },
+  "intro": {
+    "label": "DECISION BRIEF",
+    "title": "Turn researched material into a deck people can navigate",
+    "subtitle": "Structured evidence, explicit recommendations, and a next action",
+    "summary": "A synthetic example included to prove the public package works without private content.",
+    "proofStats": [
+      {
+        "label": "DECISIONS",
+        "value": "1"
+      },
+      {
+        "label": "SOURCE TYPES",
+        "value": "Public web"
+      }
+    ],
+    "tags": [
+      "operations",
+      "decision brief"
+    ]
+  },
+  "methodology": {
+    "label": "METHOD",
+    "title": "Make evidence, judgment, and action distinct",
+    "body": [
+      "Separate what the source proves from what the operator recommends.",
+      "Keep every slide within a visible content budget so presenter mode remains readable."
+    ]
+  },
+  "items": [
+    {
+      "id": "r-01",
+      "rankLabel": "01",
+      "itemClass": "ranked",
+      "category": "WORKFLOW / DECISION",
+      "layer": "systems",
+      "title": "A sample operating choice",
+      "headline": "Evidence is only useful when it resolves to a decision",
+      "thesis": "A presentation should tell the audience what is known, what is inferred, and what happens next.",
+      "whyLabel": "WHY IT MATTERS",
+      "whyBody": "The deck format is designed for operating reviews where the audience needs to inspect evidence without losing the recommendation. This sample uses synthetic content and public example links only.",
+      "takeaway": "Choose one real briefing, apply a brand profile, and validate the production build.",
+      "verdict": {
+        "state": "TEST",
+        "fit": "Teams turning research into operating decisions",
+        "effort": "MEDIUM",
+        "whyNow": "A validated deck is easier to share and review than an unstructured document.",
+        "risks": [
+          "Overfilling slides weakens presenter mode."
+        ],
+        "nextStep": "Replace this sample with one source-backed briefing."
+      },
+      "stats": [
+        {
+          "label": "STATUS",
+          "value": "SAMPLE",
+          "emphasis": "red"
+        },
+        {
+          "label": "FORMAT",
+          "value": "JSON"
+        },
+        {
+          "label": "LICENSE",
+          "value": "MIT"
+        }
+      ],
+      "highlights": [
+        {
+          "title": "Brand profiles",
+          "body": "Resolve colors, typography, and wordmark before the renderer build."
+        },
+        {
+          "title": "Content budgets",
+          "body": "Validate the report before trusting the visual result."
+        }
+      ],
+      "sources": [
+        {
+          "label": "Example source",
+          "url": "https://example.com",
+          "domain": "example.com",
+          "type": "article"
+        }
+      ],
+      "tags": [
+        "sample",
+        "decision"
+      ],
+      "tabs": [
+        {
+          "id": "summary",
+          "type": "summary",
+          "label": "SUMMARY"
+        },
+        {
+          "id": "source",
+          "type": "source",
+          "label": "SOURCE",
+          "title": "Read the source before adopting",
+          "body": "The repository is the record for current compatibility, releases, and known issues. Treat marketing claims as secondary.",
+          "links": [
+            {
+              "label": "Open example",
+              "url": "https://example.com",
+              "domain": "example.com",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "decision",
+          "type": "decision",
+          "label": "DECISION",
+          "title": "The call"
+        }
+      ]
+    }
+  ],
+  "closing": {
+    "label": "NEXT",
+    "title": "Build one real deck",
+    "body": [
+      "Choose a preset or supply a custom brand profile, then run validation and build."
+    ],
+    "cta": {
+      "label": "Read the user guide",
+      "url": "https://github.com/fullREFIT/presentation-deck-builder-skill/blob/main/USER-GUIDE.md"
+    }
+  },
+  "seo": {
+    "title": "Sample operator briefing",
+    "description": "Synthetic sample deck for Presentation Deck Builder v2."
+  }
+}

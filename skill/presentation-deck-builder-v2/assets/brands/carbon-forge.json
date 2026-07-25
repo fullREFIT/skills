@@ -1,0 +1,31 @@
+{
+  "id": "carbon-forge",
+  "label": "Carbon Forge",
+  "useWhen": "Technical, decisive, operator-led briefings",
+  "name": "full/REFIT",
+  "wordmark": "full/REFIT",
+  "tagline": "Systems built. Teams equipped.",
+  "colors": {
+    "dark": "#121010",
+    "dark2": "#333130",
+    "canvas": "#F2F0EE",
+    "surface": "#FFFFFF",
+    "text": "#121010",
+    "muted": "#878E88",
+    "primary": "#D43B2A",
+    "primaryHover": "#B8301F",
+    "secondary": "#FFB400",
+    "border": "#E5E3E0"
+  },
+  "fonts": {
+    "body": "Outfit, Arial, sans-serif",
+    "display": "Outfit, Arial, sans-serif",
+    "mono": "JetBrains Mono, monospace",
+    "googleCss": "https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=JetBrains+Mono:wght@600;700&display=swap"
+  },
+  "rules": [
+    "No gradients",
+    "No decorative italics",
+    "Use red for primary action and gold sparingly"
+  ]
+}

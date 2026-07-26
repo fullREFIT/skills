@@ -13,6 +13,7 @@ All material public changes to the full/REFIT skills collection are recorded her
 - Prioritized GitHub optimization plan
 - Repository validation script and continuous-integration workflow
 - Issue templates, pull-request template, security policy, and code of conduct
+- Initial `presentation-deck-builder-v2.0.0` release with a verified ZIP asset
 
 ### Moved
 

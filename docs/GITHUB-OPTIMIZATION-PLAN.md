@@ -128,11 +128,13 @@ After-publication verification:
 
 ## Phase 2: Distribution and release quality
 
-Target: after the monorepo migration is stable.
+Status: tagged release implemented in this migration. Third-party installer and plugin distribution remain staged until clean-environment tests pass.
 
 ### Tagged release
 
-Create an initial `presentation-deck-builder-v2.0.0` release from the canonical monorepo commit. Attach the same ZIP served by the landing page. Verify both assets have the same SHA-256 checksum.
+Status: implemented.
+
+Create the initial `presentation-deck-builder-v2.0.0` release from the canonical monorepo commit. Attach the same ZIP served by the landing page. Verify both assets have the same SHA-256 checksum.
 
 ### Third-party installer test
 

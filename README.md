@@ -23,9 +23,9 @@ python3 scripts/list-skills.py
 
 ## Skill catalog
 
-| Skill | What it does | Guide | Download | Live example |
-| --- | --- | --- | --- | --- |
-| [Presentation Deck Builder v2](presentation-deck-builder-skill/) | Turns structured research into validated, branded presentation websites | [User guide](presentation-deck-builder-skill/USER-GUIDE.md) | [ZIP](https://fullrefit-presentation-deck-builder.vercel.app/downloads/presentation-deck-builder-v2.zip) | [Landing page](https://fullrefit-presentation-deck-builder.vercel.app) |
+| Skill | What it does | Guide | Download | Release | Live example |
+| --- | --- | --- | --- | --- | --- |
+| [Presentation Deck Builder v2](presentation-deck-builder-skill/) | Turns structured research into validated, branded presentation websites | [User guide](presentation-deck-builder-skill/USER-GUIDE.md) | [ZIP](https://fullrefit-presentation-deck-builder.vercel.app/downloads/presentation-deck-builder-v2.zip) | [v2.0.0](https://github.com/fullREFIT/skills/releases/tag/presentation-deck-builder-v2.0.0) | [Landing page](https://fullrefit-presentation-deck-builder.vercel.app) |
 
 Machine-readable catalog: [skills-manifest.json](skills-manifest.json)
 

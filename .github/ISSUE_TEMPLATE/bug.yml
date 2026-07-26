@@ -1,0 +1,60 @@
+name: Bug report
+description: Report reproducible behavior that differs from the guide or expected result
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include credentials, customer data, private reports, or personal information. Use the private security path for vulnerabilities.
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Affected skill
+      options:
+        - Presentation Deck Builder v2
+        - Repository documentation or tooling
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      placeholder: Release name or commit SHA
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Use synthetic input and list every step from a clean start.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+      description: Remove credentials and private data from logs.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: macOS 26, Node 22, Claude Code version, browser version
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed credentials, customer data, private reports, and personal information.
+          required: true

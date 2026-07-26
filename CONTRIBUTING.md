@@ -1,47 +1,40 @@
-# Contributing
+# Contributing to full/REFIT Skills
 
-Contributions are welcome when they preserve the project’s core guarantees: isolated builds, source-backed content, explicit brand selection, deterministic validation, and no credential dependency.
+Contributions should make a skill easier to discover, safer to install, more predictable to run, or simpler to maintain.
 
-## Development setup
+## Before opening a change
+
+1. Read the relevant skill README and user guide.
+2. Read [Repository User Guide SOP](docs/REPOSITORY-USER-GUIDE-SOP.md) for documentation changes.
+3. Use synthetic examples. Do not commit customer data, credentials, private machine paths, or internal reports.
+4. Keep the change focused on one skill or one repository-level improvement.
+
+## Local setup
 
 ```bash
-git clone https://github.com/fullREFIT/presentation-deck-builder-skill.git
-cd presentation-deck-builder-skill
-npm install
+git clone https://github.com/fullREFIT/skills.git
+cd skills
+npm ci --prefix presentation-deck-builder-skill
+npm ci --prefix presentation-deck-builder-skill/skill/presentation-deck-builder-v2/assets/renderer
 npm run check
 ```
 
-Renderer checks:
+## Pull request requirements
 
-```bash
-cd skill/presentation-deck-builder-v2/assets/renderer
-npm install
-npm run validate
-npm test
-npm run typecheck
-npm run build
-```
+A pull request must explain:
 
-## Pull requests
+- The user problem being solved
+- The files and behavior changed
+- The verification performed
+- Any compatibility, privacy, or migration risk
+- The guide sections updated
 
-Include:
+When behavior changes, update the relevant user guide, examples, tests, manifest entry, and changelog in the same pull request.
 
-- the problem being fixed
-- why the chosen boundary belongs in this repository
-- tests for changed behavior
-- screenshots for landing-page changes at desktop and mobile widths
-- confirmation that `npm run audit:public` passes
+## Documentation standard
 
-Do not include real customer reports, private filesystem paths, credentials, proprietary fonts, or unlicensed logos.
+Write the first path for someone who has never used a terminal. Follow it with exact technical reference for operators who need implementation detail. Every action must include an expected result or a recovery path.
 
-## Brand profiles
+## Security
 
-A new built-in profile needs:
-
-- a clear audience and use case distinct from existing profiles
-- complete functional color and font roles
-- evidence that the contributor can publish the brand name and marks
-- adapter and renderer smoke tests
-- documented rules and tradeoffs
-
-Generic custom profiles should normally remain user-owned files rather than becoming built-in presets.
+Do not open a public issue for a suspected vulnerability or exposed credential. Follow [SECURITY.md](SECURITY.md).

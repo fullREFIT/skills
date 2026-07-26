@@ -1,0 +1,41 @@
+name: Feature request
+description: Propose a user outcome or usability improvement
+title: "[Idea]: "
+labels:
+  - enhancement
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Presentation Deck Builder v2
+        - New skill proposal
+        - Installation and distribution
+        - Documentation
+        - Repository tooling
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: Describe the job or blocker before proposing implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: What should a user be able to accomplish?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or example
+      description: Link public evidence or provide a synthetic example.
+  - type: textarea
+    id: tradeoffs
+    attributes:
+      label: Constraints or trade-offs

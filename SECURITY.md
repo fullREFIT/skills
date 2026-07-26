@@ -1,41 +1,34 @@
-# Security policy
+# Security Policy
 
-## Supported version
+## Report a vulnerability
 
-Security fixes are applied to the latest release on the `main` branch.
+Do not publish vulnerability details, credentials, private data, or exploit steps in a public issue.
 
-## Reporting a vulnerability
+Use GitHub's private vulnerability reporting feature for this repository. If that feature is unavailable, contact the repository owner through the verified full/REFIT website and state only that you need a private security channel.
 
-Do not open a public issue containing an exploitable vulnerability or private data. Email `paul@fullrefit.com` with:
+Include:
 
-- affected file and version
-- reproduction steps
-- expected impact
-- suggested mitigation, if known
+- The affected skill and version or commit
+- The minimum steps needed to reproduce the issue
+- The impact you observed
+- Whether credentials or personal data may be exposed
+- A safe contact method for follow-up
 
-## Security model
+## Public package policy
 
-The adapter:
+Published skills must not include:
 
-- uses the Python standard library
-- makes no network calls
-- validates brand identifiers, colors, fonts, and font stylesheet URLs
-- escapes wordmark and metadata strings before inserting them into HTML
-- refuses unsafe output paths
-- replaces an existing directory only when it contains the generated-output marker
+- Credentials, tokens, passwords, or connection strings
+- Private customer records or internal business documents
+- Machine-specific home-directory paths
+- Hidden telemetry
+- Destructive actions without explicit guards
+- Dependencies on private repositories unless clearly declared and intentionally access-gated
 
-The renderer can make browser requests to:
+## Supported releases
 
-- Google Fonts when a selected profile uses its stylesheet service
-- the public GitHub API when a report contains a GitHub repository card
-- source URLs deliberately included in a report
+The latest commit on `main` and the latest tagged release receive security fixes. Older versions may be asked to upgrade before a fix is investigated.
 
-No telemetry, analytics, API key, or hosted generation service is included.
+## Response
 
-## User responsibilities
-
-- Review report links and embedded sources before deployment.
-- Keep confidential reports out of public repositories.
-- Confirm font and trademark rights for custom brands.
-- Treat downloaded reports and brand profiles as untrusted input.
-- Verify the deployed site without authentication before sharing its URL.
+Maintainers will acknowledge a credible report privately, assess impact, prepare a fix, and coordinate disclosure. Acknowledgement is not a guarantee of a specific resolution timeline.

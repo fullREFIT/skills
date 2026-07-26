@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "repository": "https://github.com/fullREFIT/skills",
+  "skills": [
+    {
+      "id": "presentation-deck-builder-v2",
+      "name": "Presentation Deck Builder v2",
+      "status": "stable",
+      "path": "presentation-deck-builder-skill/skill/presentation-deck-builder-v2",
+      "projectPath": "presentation-deck-builder-skill",
+      "description": "Turns structured research into validated, branded presentation websites.",
+      "audiences": [
+        "non-technical operators",
+        "consultants",
+        "designers",
+        "developers"
+      ],
+      "guide": "presentation-deck-builder-skill/USER-GUIDE.md",
+      "download": "https://fullrefit-presentation-deck-builder.vercel.app/downloads/presentation-deck-builder-v2.zip",
+      "website": "https://fullrefit-presentation-deck-builder.vercel.app",
+      "license": "MIT"
+    }
+  ]
+}

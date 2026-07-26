@@ -1,18 +1,19 @@
 {
-  "name": "fullrefit-presentation-deck-builder",
-  "version": "2.0.0",
+  "name": "fullrefit-skills",
+  "version": "1.0.0",
   "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "vite site --host 127.0.0.1",
-    "build": "vite build site --outDir ../dist --emptyOutDir",
-    "test": "vitest run",
-    "audit:public": "node scripts/audit-public.mjs",
-    "check": "npm run audit:public && npm test && npm run build"
+  "description": "Public full/REFIT agent skills, guides, examples, and validation",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fullREFIT/skills"
   },
-  "devDependencies": {
-    "axe-core": "^4.12.1",
-    "vite": "^6.3.5",
-    "vitest": "^3.2.4"
-  }
+  "license": "MIT",
+  "scripts": {
+    "list": "python3 scripts/list-skills.py",
+    "check:repo": "python3 scripts/validate-repository.py",
+    "check:project": "npm run check --prefix presentation-deck-builder-skill",
+    "check:renderer": "npm run validate --prefix presentation-deck-builder-skill/skill/presentation-deck-builder-v2/assets/renderer && npm test --prefix presentation-deck-builder-skill/skill/presentation-deck-builder-v2/assets/renderer && npm run typecheck --prefix presentation-deck-builder-skill/skill/presentation-deck-builder-v2/assets/renderer && npm run build --prefix presentation-deck-builder-skill/skill/presentation-deck-builder-v2/assets/renderer",
+    "check": "npm run check:repo && npm run check:project && npm run check:renderer"
+  },
+  "packageManager": "npm@10.9.4"
 }

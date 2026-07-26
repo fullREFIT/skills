@@ -1,0 +1,85 @@
+# CLAUDE.md — [Topic]
+
+<!--
+Skeleton for claude-md-forge. Delete every bracketed prompt and every section
+you cannot fill with real operative content. An empty section still costs tokens.
+Annotated guidance: references/claude-md-template.md
+-->
+
+## Purpose
+
+[3–5 lines: what work happens in this directory, what the agent is here to do,
+and the trade-off it should get right. State the goal, not the topic.]
+
+## Operating stance
+
+[2–4 lines. Only if the source establishes a posture that differs from default
+agent behavior. Otherwise delete this section.]
+
+## Decision rules
+
+[Numbered. Trigger→action. One rule per line. Rationale attached where it lets
+the agent generalize to cases the source never covered. Most-frequently-firing
+rules first.]
+
+1.
+2.
+3.
+
+## Vocabulary
+
+[Only terms whose misreading would change output. Give the specific sense used
+here, and where useful the common sense it does *not* carry.]
+
+- **[term]** — [specific sense].
+
+## Rejected — do not re-propose
+
+[What was considered and dismissed, why, and what would have to change for it to
+return. Without this section a fresh agent re-proposes what was already killed.]
+
+- **[approach]** — [reason it was rejected, as of (date)]. Reconsider only if [condition].
+
+## Constraints
+
+**Hard — do not violate:**
+
+-
+
+**Preferences — steer, do not block:**
+
+-
+
+## Working patterns
+
+[Reusable sequences and templates, each with at least one worked example.
+Anything over ~30 lines goes to docs/ with a pointer here.]
+
+### [Pattern name]
+
+[When it fires, the steps, one instance.]
+
+## Volatile facts (as of [source date] — verify before asserting)
+
+[Measured or observed values only: prices, metrics, versions, model names,
+platform behaviors, competitor claims. Decision thresholds the user chose —
+word caps, touch counts, size bands — are constraints and stay in the rules
+above. Carry the date inline on each entry so entries survive being reordered.]
+
+- [Fact] ([source date]):
+
+## More depth
+
+- `docs/[topic]-reference.md` — [what is in it, and when to open it].
+- `docs/SOURCES.md` — what this file was built from, and what was cut.
+
+---
+
+Built from: [source], [source date]. Distilled [distillation date].
+Inferred rather than stated in source: [name the rules by their subject, not their
+number — numbers break when rules get resequenced. Or "none"] — confirm before
+treating as settled.
+Re-verify anything load-bearing in "Volatile facts" before asserting it.
+
+**[Restate the single most important constraint here — the end of a long context
+gets attention the middle does not.]**

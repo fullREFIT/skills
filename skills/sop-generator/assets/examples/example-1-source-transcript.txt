@@ -1,0 +1,45 @@
+SOURCE TRANSCRIPT: Customer Onboarding Process Recording (5 minutes)
+
+OK so when a new customer signs up, the first thing I do is check
+Stripe to make sure the payment actually went through. Sometimes
+people sign up but the card gets declined and they do not realize
+it. If payment is good, I create their account in our admin panel.
+
+Then I send the welcome email — I use the template in our shared
+Drive folder, the one called "New Customer Welcome v3." I personalize
+the first line with their company name and the plan they signed up
+for. I also CC our support lead so she knows there is a new account.
+
+After that, I schedule the kickoff call. I check their timezone in
+the signup form and find a slot within the next 48 hours. I use
+Calendly for this — the "Customer Kickoff" event type. If they are
+international and the timezone difference is more than 8 hours, I
+loop in our EMEA support person instead.
+
+Before the kickoff call, I need to set up their workspace. That
+means creating their project in our app, adding the default templates
+based on their plan tier — Starter gets 3 templates, Pro gets 8,
+Enterprise gets all of them plus custom ones. I also add their logo
+and brand colors if they provided them during signup.
+
+The kickoff call itself is usually 30 minutes. I walk them through
+the workspace, show them how to invite their team, and set up their
+first project together. I always ask what their biggest priority is
+and help them configure the tool for that specific use case. If they
+do not know, I suggest starting with their most time-consuming
+recurring task.
+
+After the call, I send a recap email with links to their workspace,
+the getting-started guide, and the support channel. I also create a
+follow-up task for myself to check in after one week.
+
+One thing that trips people up — if the customer signed up through
+a partner referral, there is an extra step. I need to log the
+referral in our partner portal and notify the partner that their
+referral converted. This has to happen within 24 hours or the partner
+does not get credit.
+
+Common mistakes: forgetting to check payment before setting up the
+account (wastes time if payment failed), not checking timezone
+before scheduling (leads to no-shows), and forgetting the partner
+referral step.

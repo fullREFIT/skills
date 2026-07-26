@@ -1,0 +1,57 @@
+SOURCE: Monthly Close Meeting Notes (2 pages)
+
+Participants: Controller (Maria), Senior Accountant (David),
+AP Clerk (Jenny)
+
+Maria walked through the close process:
+
+The close starts on the 1st business day after month-end. First
+thing, David pulls the bank statements for all accounts — we have
+3 operating accounts and 1 payroll account at Chase, plus a savings
+account at Capital One. He downloads the statements and starts the
+reconciliation in QuickBooks. This usually takes about 2 hours if
+there are no surprises.
+
+While David does bank rec, Jenny processes any remaining AP invoices.
+Everything needs to be entered by end of day on the 2nd business day.
+She checks the AP inbox (ap@company.com), the shared Drive folder
+where departments drop invoices, and asks department heads if they
+have anything outstanding. Cutoff is strict — anything that comes in
+after the 2nd business day gets booked to the next month.
+
+After bank rec and AP are done, Maria reviews the trial balance. She
+checks for unusual balances, compares to prior month, and investigates
+anything that moved more than 10%. She also runs the AR aging report
+and flags anything over 60 days for collections follow-up.
+
+Payroll needs special handling. If the pay period crosses the month
+boundary, David needs to accrue the portion that belongs to the
+closing month. He calculates this based on business days. For example,
+if a bi-weekly pay period is Jan 27 - Feb 9, and the month ends
+Jan 31, he accrues 3/10 of the gross payroll to January. This is one
+of the most common mistakes — getting the accrual wrong throws off
+both months.
+
+Depreciation runs automatically in QuickBooks — fixed asset module
+calculates it. But Maria still checks it because we had an issue
+last quarter where a fully depreciated asset was still being expensed.
+
+Revenue recognition: for subscription revenue, it is straightforward
+— we recognize monthly. For professional services, David checks the
+project status in our PM tool and recognizes based on percentage
+completion. He meets with the project managers to confirm percentages.
+
+Tax remittances: Jenny prepares the sales tax filing based on the
+month's transactions. Due by the 20th of the following month. She
+exports the tax summary from QuickBooks and files through the state
+portal.
+
+Target: draft financials to Maria by business day 5. Maria reviews,
+makes adjustments, and has final financials ready by business day 7.
+Board package goes out by business day 10.
+
+Issues from last month: David's bank rec had a $4,200 discrepancy
+that took a full day to track down — turned out to be a duplicate
+payment to a vendor. Jenny had 3 invoices come in after cutoff that
+departments insisted belonged to the prior month — Maria made the
+call to book them to the current month to maintain the cutoff rule.

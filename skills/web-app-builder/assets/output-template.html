@@ -1,0 +1,804 @@
+<!-- Format: single-page-collapsible | Files: 1 | Content types: checklist -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Title</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       CARBON FORGE DESIGN SYSTEM v1.1
+       ============================================================ */
+    :root {
+      --carbon-core:     #121010;
+      --forge-red:       #D43B2A;
+      --forge-red-hover: #b8301f;
+      --forge-gold:      #FFB400;
+      --forge-dark:      #333130;
+      --ash-white:       #F2F0EE;
+      --pure-white:      #FFFFFF;
+      --echo:            #878E88;
+      --soft-gray:       #E5E3E0;
+      --font-primary: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
+      --radius: 0.5rem;
+      --radius-lg: 0.75rem;
+      --max-width: 960px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-primary);
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--carbon-core);
+      background: var(--ash-white);
+    }
+    em, i, cite, address, dfn, var { font-style: normal; font-weight: 600; }
+
+    /* Skip link */
+    .skip-link {
+      position: absolute; top: -40px; left: 0;
+      background: var(--forge-red); color: white;
+      padding: 8px 16px; z-index: 100; text-decoration: none;
+      font-family: var(--font-primary);
+    }
+    .skip-link:focus { top: 0; }
+    :focus-visible { outline: 3px solid var(--forge-red); outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* ---- Header ---- */
+    .app-header {
+      background: var(--carbon-core);
+      padding: 1rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .app-header-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .app-header-meta { flex: 1; min-width: 0; }
+    .section-label {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--forge-red);
+      margin-bottom: 0.25rem;
+    }
+    .app-header .section-label { color: var(--forge-gold); }
+    .app-header h1 {
+      font-family: var(--font-primary);
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: var(--ash-white);
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ---- Layout ---- */
+    .main-content {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.5rem 1rem 4rem;
+    }
+
+    /* ---- Bulk Controls ---- */
+    .bulk-controls {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--soft-gray);
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ---- Buttons ---- */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.375rem;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      font-family: var(--font-primary); font-weight: 600; font-size: 0.875rem;
+      border: none; cursor: pointer;
+      transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+      text-decoration: none; white-space: nowrap; line-height: 1;
+    }
+    .btn-primary { background: var(--forge-red); color: #fff; }
+    .btn-primary:hover { background: var(--forge-red-hover); }
+    .btn-secondary {
+      background: transparent; color: var(--carbon-core);
+      border: 1px solid var(--soft-gray);
+    }
+    .btn-secondary:hover { background: var(--pure-white); }
+    .btn-sm { padding: 0.3rem 0.625rem; font-size: 0.75rem; }
+    /* Header variant — white text on dark */
+    .btn-header {
+      background: transparent;
+      color: var(--ash-white);
+      border: 1px solid rgba(255,255,255,0.25);
+      font-size: 0.8125rem;
+    }
+    .btn-header:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.4); }
+
+    /* ---- Toggle Sections ---- */
+    .toggle-section {
+      margin-bottom: 0.5rem;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--soft-gray);
+    }
+    .toggle-header {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; padding: 1rem 1.25rem;
+      background: var(--pure-white); border: none; cursor: pointer;
+      text-align: left;
+      transition: background-color 150ms ease;
+    }
+    .toggle-header:hover { background: var(--ash-white); }
+    .toggle-header h2 { font-size: 1rem; font-weight: 600; margin: 0; color: var(--carbon-core); }
+    .toggle-icon {
+      font-family: var(--font-mono); font-size: 0.75rem; color: var(--echo);
+      transition: transform 200ms ease; flex-shrink: 0; margin-left: 0.75rem;
+    }
+    .toggle-header[aria-expanded="true"] .toggle-icon { transform: rotate(180deg); }
+    .toggle-content {
+      display: none;
+      padding: 1.25rem 1.5rem;
+      background: var(--pure-white);
+      border-top: 1px solid var(--soft-gray);
+    }
+    .toggle-content.is-open { display: block; }
+    .toggle-content p { margin-bottom: 0.875rem; }
+    .toggle-content p:last-child { margin-bottom: 0; }
+    .toggle-content h3 { font-size: 0.9375rem; font-weight: 700; color: var(--carbon-core); margin: 1rem 0 0.5rem; }
+    .toggle-content h4 { font-size: 0.875rem; font-weight: 600; color: var(--carbon-core); margin: 0.875rem 0 0.375rem; }
+    .toggle-content ul:not(.checklist), .toggle-content ol { padding-left: 1.5rem; margin-bottom: 0.875rem; }
+    .toggle-content li { margin-bottom: 0.25rem; font-size: 0.9375rem; }
+
+    /* ---- Code Blocks ---- */
+    .code-block-wrap { background: var(--carbon-core); border-radius: var(--radius); overflow: hidden; margin: 1rem 0; border: 1px solid var(--soft-gray); }
+    .code-block-header { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1rem; background: var(--forge-dark); border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .code-lang { font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 600; color: var(--forge-gold); text-transform: uppercase; letter-spacing: 0.08em; }
+    .code-pre { margin: 0; padding: 1.25rem; overflow-x: auto; }
+    .code-content { font-family: var(--font-mono); font-size: 0.875rem; line-height: 1.6; color: var(--ash-white); white-space: pre; }
+    .copy-btn { background: rgba(255,255,255,0.1); color: var(--ash-white); border: 1px solid rgba(255,255,255,0.2); }
+    .copy-btn:hover { background: rgba(255,255,255,0.2); }
+    .copy-btn.copied { background: rgba(5,150,105,0.3); color: #6ee7b7; border-color: rgba(5,150,105,0.5); }
+
+    /* ---- Tables ---- */
+    .table-wrap { overflow-x: auto; border-radius: var(--radius-lg); border: 1px solid var(--soft-gray); margin: 1rem 0; }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+    .data-table th { background: var(--carbon-core); color: var(--ash-white); font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.75rem 1rem; text-align: left; white-space: nowrap; }
+    .data-table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--soft-gray); color: var(--carbon-core); line-height: 1.5; }
+    .data-table tbody tr:nth-child(even) td { background: var(--ash-white); }
+    .data-table tbody tr:nth-child(odd) td { background: var(--pure-white); }
+    .data-table tbody tr:last-child td { border-bottom: none; }
+
+    /* ---- Callouts ---- */
+    .callout { display: flex; gap: 0.875rem; padding: 1rem 1.25rem; border-radius: var(--radius); margin: 1rem 0; border: 1px solid transparent; }
+    .callout-icon { font-size: 1.125rem; flex-shrink: 0; line-height: 1.4; }
+    .callout-title { font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.375rem; }
+    .callout-body > *:last-child { margin-bottom: 0; }
+    .callout-warning { background: #fef9e7; border-color: #f59e0b; border-left: 4px solid #f59e0b; }
+    .callout-warning .callout-title { color: #92400e; }
+    .callout-tip { background: #f0fdf4; border-color: #059669; border-left: 4px solid #059669; }
+    .callout-tip .callout-title { color: #065f46; }
+    .callout-danger { background: #fef2f2; border-color: #dc2626; border-left: 4px solid #dc2626; }
+    .callout-danger .callout-title { color: #991b1b; }
+    .callout-info { background: #f0f4f8; border-color: #64748b; border-left: 4px solid #64748b; }
+    .callout-info .callout-title { color: #334155; }
+    .callout-default { border-left: 4px solid var(--forge-red); background: var(--ash-white); padding: 1rem 1.25rem; margin: 1rem 0; border-radius: 0 var(--radius) var(--radius) 0; }
+
+    /* ---- Checklists ---- */
+    .checklist-section { padding: 0.25rem 0; }
+    .checklist-progress-wrap { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .progress-bar-wrap { background: var(--soft-gray); border-radius: 99px; height: 6px; overflow: hidden; flex: 1; min-width: 60px; }
+    .progress-bar-fill { height: 100%; background: var(--forge-red); border-radius: 99px; transition: width 200ms ease; }
+    .progress-label { font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 600; color: var(--echo); white-space: nowrap; }
+    .checklist { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.25rem; }
+    .checklist-label { display: flex; align-items: flex-start; gap: 0.75rem; cursor: pointer; padding: 0.5rem; border-radius: var(--radius); border: 1px solid transparent; transition: background 150ms ease; }
+    .checklist-label:hover { background: var(--ash-white); border-color: var(--soft-gray); }
+    .checklist-checkbox { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; accent-color: var(--forge-red); cursor: pointer; }
+    .checklist-text { font-size: 0.9375rem; line-height: 1.5; transition: opacity 150ms ease, text-decoration-color 150ms ease; }
+    .checklist-item.is-checked .checklist-text {
+      text-decoration: line-through;
+      text-decoration-color: var(--echo);
+      opacity: 0.5;
+    }
+
+    /* ---- Notes Section ---- */
+    .notes-section {
+      margin-top: 1.125rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--soft-gray);
+    }
+    .notes-label {
+      display: block;
+      margin-bottom: 0.375rem;
+      cursor: text;
+    }
+    .notes-label .section-label {
+      color: var(--echo);
+      font-size: 0.625rem;
+    }
+    .notes-textarea {
+      width: 100%;
+      padding: 0.625rem 0.875rem;
+      font-family: var(--font-primary);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--carbon-core);
+      background: var(--ash-white);
+      border: 1px solid var(--soft-gray);
+      border-radius: var(--radius);
+      resize: none;
+      overflow: hidden;
+      transition: border-color 150ms ease, background 150ms ease;
+      min-height: 2.75rem;
+    }
+    .notes-textarea:focus {
+      outline: none;
+      border-color: var(--forge-red);
+      background: var(--pure-white);
+    }
+    .notes-textarea::placeholder { color: var(--echo); font-style: normal; }
+
+    /* ---- Extract Bar (bottom of tab/page) ---- */
+    .extract-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 0;
+      margin-top: 2.5rem;
+      border-top: 2px solid var(--soft-gray);
+      flex-wrap: wrap;
+    }
+    .extract-bar-label {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--echo);
+    }
+
+    /* ---- Markdown Export Modal ---- */
+    .md-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .md-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(18, 16, 16, 0.72);
+    }
+    .md-modal-box {
+      position: relative;
+      width: 100%;
+      max-width: 680px;
+      max-height: 88vh;
+      background: var(--pure-white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--soft-gray);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.28);
+    }
+    .md-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--soft-gray);
+      flex-shrink: 0;
+    }
+    .md-modal-title {
+      font-family: var(--font-primary);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--carbon-core);
+      margin: 0;
+    }
+    .md-modal-close {
+      background: transparent; border: none; font-size: 1rem;
+      color: var(--echo); cursor: pointer; padding: 0.25rem;
+      border-radius: var(--radius); transition: color 150ms ease; line-height: 1;
+    }
+    .md-modal-close:hover { color: var(--carbon-core); }
+    .md-modal-hint {
+      font-family: var(--font-primary);
+      font-size: 0.8125rem;
+      color: var(--echo);
+      padding: 0.625rem 1.5rem 0;
+      flex-shrink: 0;
+    }
+    .md-modal-content {
+      flex: 1;
+      margin: 0.75rem 1.5rem;
+      padding: 0.875rem;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      color: var(--carbon-core);
+      background: var(--ash-white);
+      border: 1px solid var(--soft-gray);
+      border-radius: var(--radius);
+      resize: none;
+      overflow-y: auto;
+      min-height: 240px;
+    }
+    .md-modal-footer {
+      display: flex;
+      gap: 0.625rem;
+      justify-content: flex-end;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--soft-gray);
+      flex-shrink: 0;
+    }
+
+    /* ---- Scroll to top ---- */
+    .scroll-top-btn {
+      position: fixed; bottom: 1.5rem; right: 1.5rem;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--forge-red); color: white; border: none; cursor: pointer;
+      display: none; align-items: center; justify-content: center;
+      font-size: 1.125rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: background-color 200ms ease; z-index: 40;
+    }
+    .scroll-top-btn.is-visible { display: flex; }
+    .scroll-top-btn:hover { background: var(--forge-red-hover); }
+
+    /* ---- Print ---- */
+    @media print {
+      .bulk-controls, .scroll-top-btn, .extract-bar,
+      .md-modal, .app-header .btn-header { display: none !important; }
+      .toggle-content { display: block !important; }
+      body { background: white; }
+      .toggle-section { border: 1px solid #ccc; break-inside: avoid; margin-bottom: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ============================================================
+       APP HEADER
+       "Export Session Recap" button collects all tabs/sections
+  ============================================================ -->
+  <header class="app-header">
+    <div class="app-header-inner">
+      <div class="app-header-meta">
+        <p class="section-label">DOCUMENT</p>
+        <h1>Document Title</h1>
+      </div>
+      <button class="btn btn-header"
+              onclick="exportSessionRecap()"
+              aria-label="Export full session recap as markdown">
+        Export Session Recap
+      </button>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       MAIN CONTENT
+  ============================================================ -->
+  <main id="main-content" class="main-content">
+    <div class="bulk-controls">
+      <button class="btn btn-secondary btn-sm" onclick="expandAll()">Expand All</button>
+      <button class="btn btn-secondary btn-sm" onclick="collapseAll()">Collapse All</button>
+    </div>
+
+    <!-- ============================================================
+         SECTION TEMPLATE — duplicate for each H2 in source
+    ============================================================ -->
+    <div class="toggle-section" data-section="section-1">
+      <button class="toggle-header" aria-expanded="false" aria-controls="section-1-content"
+              onclick="toggleSection('section-1')">
+        <h2>Section Title</h2>
+        <span class="toggle-icon" aria-hidden="true">▼</span>
+      </button>
+      <div class="toggle-content" id="section-1-content" role="region">
+
+        <!-- Standard paragraph content -->
+        <p>Section content goes here. Replace with rendered markdown.</p>
+
+        <!-- Example: code block -->
+        <div class="code-block-wrap">
+          <div class="code-block-header">
+            <span class="code-lang">bash</span>
+            <button class="btn btn-sm copy-btn" onclick="copyCode(this)" aria-label="Copy code">Copy</button>
+          </div>
+          <pre class="code-pre"><code class="code-content">echo "Hello, Carbon Forge"</code></pre>
+        </div>
+
+        <!-- Example: table -->
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th scope="col">Column A</th><th scope="col">Column B</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Value 1</td><td>Value 2</td></tr>
+              <tr><td>Value 3</td><td>Value 4</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Example: callout -->
+        <div class="callout callout-tip" role="note">
+          <div class="callout-icon">✅</div>
+          <div class="callout-body">
+            <p class="callout-title">Tip</p>
+            <p>Use this pattern for tips and notes.</p>
+          </div>
+        </div>
+
+        <!-- ---- CHECKLIST SECTION ---- -->
+        <div class="checklist-section" data-checklist-id="checklist-1">
+          <div class="checklist-progress-wrap">
+            <div class="progress-bar-wrap">
+              <div class="progress-bar-fill" id="checklist-1-bar" style="width:0%"></div>
+            </div>
+            <span class="progress-label" id="checklist-1-label">0 / 3 complete</span>
+            <button class="btn btn-sm btn-secondary"
+                    onclick="resetChecklist('checklist-1')"
+                    style="margin-left:auto;">Reset All</button>
+          </div>
+          <ul class="checklist" role="list">
+            <li class="checklist-item">
+              <label class="checklist-label">
+                <input type="checkbox" class="checklist-checkbox"
+                       onchange="updateProgress('checklist-1')">
+                <span class="checklist-text">First task item</span>
+              </label>
+            </li>
+            <li class="checklist-item">
+              <label class="checklist-label">
+                <input type="checkbox" class="checklist-checkbox"
+                       onchange="updateProgress('checklist-1')">
+                <span class="checklist-text">Second task item</span>
+              </label>
+            </li>
+            <li class="checklist-item">
+              <label class="checklist-label">
+                <input type="checkbox" class="checklist-checkbox"
+                       onchange="updateProgress('checklist-1')">
+                <span class="checklist-text">Third task item</span>
+              </label>
+            </li>
+          </ul>
+
+          <!-- Notes textarea — always included with every checklist -->
+          <div class="notes-section">
+            <label class="notes-label" for="notes-checklist-1">
+              <span class="section-label" style="color:var(--echo);">NOTES</span>
+            </label>
+            <textarea
+              class="notes-textarea"
+              id="notes-checklist-1"
+              data-notes-for="checklist-1"
+              placeholder="Add notes about this section..."
+              oninput="autoGrow(this)"
+              rows="2"
+            ></textarea>
+          </div>
+        </div>
+        <!-- ---- END CHECKLIST SECTION ---- -->
+
+      </div>
+    </div>
+    <!-- ---- END SECTION TEMPLATE ---- -->
+
+
+    <!-- ============================================================
+         EXTRACT BAR — bottom of single-page layout (or each tab panel)
+         For tabbed layouts, place inside each .tab-panel instead
+    ============================================================ -->
+    <div class="extract-bar">
+      <span class="extract-bar-label">Session export</span>
+      <button class="btn btn-secondary"
+              onclick="extractTabMarkdown(null, 'Full Document')"
+              aria-label="Extract session recap as markdown">
+        Extract Markdown
+      </button>
+    </div>
+
+  </main>
+
+  <!-- Scroll to top -->
+  <button class="scroll-top-btn" id="scroll-top-btn" aria-label="Scroll to top">↑</button>
+
+  <!-- ============================================================
+       MARKDOWN EXPORT MODAL
+       One instance per page. Shared by all extract buttons.
+  ============================================================ -->
+  <div class="md-modal" id="md-modal" role="dialog" aria-modal="true"
+       aria-labelledby="md-modal-title" style="display:none;">
+    <div class="md-modal-backdrop" onclick="closeMarkdownModal()"></div>
+    <div class="md-modal-box">
+      <div class="md-modal-header">
+        <h3 class="md-modal-title" id="md-modal-title">Session Recap</h3>
+        <button class="md-modal-close" onclick="closeMarkdownModal()"
+                aria-label="Close modal">✕</button>
+      </div>
+      <p class="md-modal-hint">
+        Copy this into Claude Code for full context of what was completed.
+      </p>
+      <textarea class="md-modal-content" id="md-modal-content"
+                readonly spellcheck="false"></textarea>
+      <div class="md-modal-footer">
+        <button class="btn btn-primary" id="md-copy-btn" onclick="copyModalContent()">
+          Copy to Clipboard
+        </button>
+        <button class="btn btn-secondary" onclick="closeMarkdownModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    'use strict';
+
+    /* ============================================================
+       TOGGLE SECTIONS
+    ============================================================ */
+    function toggleSection(id) {
+      var section = document.querySelector('[data-section="' + id + '"]');
+      var header = section.querySelector('.toggle-header');
+      var content = section.querySelector('.toggle-content');
+      var isOpen = content.classList.contains('is-open');
+      content.classList.toggle('is-open', !isOpen);
+      header.setAttribute('aria-expanded', String(!isOpen));
+    }
+
+    function expandAll() {
+      document.querySelectorAll('.toggle-content').forEach(function(c) { c.classList.add('is-open'); });
+      document.querySelectorAll('.toggle-header').forEach(function(h) { h.setAttribute('aria-expanded', 'true'); });
+    }
+
+    function collapseAll() {
+      document.querySelectorAll('.toggle-content').forEach(function(c) { c.classList.remove('is-open'); });
+      document.querySelectorAll('.toggle-header').forEach(function(h) { h.setAttribute('aria-expanded', 'false'); });
+    }
+
+    document.querySelectorAll('.toggle-header').forEach(function(btn) {
+      btn.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
+      });
+    });
+
+    /* ============================================================
+       CODE BLOCKS — COPY
+    ============================================================ */
+    function copyCode(btn) {
+      var code = btn.closest('.code-block-wrap').querySelector('.code-content').textContent;
+      navigator.clipboard.writeText(code).then(function() {
+        btn.textContent = 'Copied \u2713';
+        btn.classList.add('copied');
+        setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+      });
+    }
+
+    /* ============================================================
+       CHECKLISTS
+    ============================================================ */
+    function updateProgress(checklistId) {
+      var section = document.querySelector('[data-checklist-id="' + checklistId + '"]');
+      var all = section.querySelectorAll('.checklist-checkbox');
+      var done = section.querySelectorAll('.checklist-checkbox:checked').length;
+      var total = all.length;
+      var pct = total > 0 ? Math.round((done / total) * 100) : 0;
+      var barEl = document.getElementById(checklistId + '-bar');
+      var labelEl = document.getElementById(checklistId + '-label');
+      if (barEl) barEl.style.width = pct + '%';
+      if (labelEl) labelEl.textContent = done + ' / ' + total + ' complete';
+      all.forEach(function(cb) {
+        cb.closest('.checklist-item').classList.toggle('is-checked', cb.checked);
+      });
+    }
+
+    function resetChecklist(checklistId) {
+      var section = document.querySelector('[data-checklist-id="' + checklistId + '"]');
+      section.querySelectorAll('.checklist-checkbox').forEach(function(cb) { cb.checked = false; });
+      section.querySelectorAll('.checklist-item').forEach(function(i) { i.classList.remove('is-checked'); });
+      updateProgress(checklistId);
+    }
+
+    /* ============================================================
+       NOTES — AUTO-GROW TEXTAREA
+    ============================================================ */
+    function autoGrow(el) {
+      el.style.height = 'auto';
+      el.style.height = el.scrollHeight + 'px';
+    }
+
+    /* ============================================================
+       MARKDOWN EXTRACT SYSTEM
+    ============================================================ */
+
+    /**
+     * Build the markdown body for one container (tab panel, or null = whole doc).
+     * sectionTitle: heading to use for this block
+     */
+    function buildMarkdownForContainer(container, sectionTitle) {
+      var lines = [];
+      lines.push('## ' + sectionTitle);
+      lines.push('');
+
+      var sections = (container || document).querySelectorAll('[data-checklist-id]');
+
+      if (sections.length === 0) {
+        lines.push('*No checklists found in this section.*');
+        lines.push('');
+        return lines.join('\n');
+      }
+
+      sections.forEach(function(section) {
+        var checklistId = section.getAttribute('data-checklist-id');
+
+        // Attempt to find a nearby heading (the .toggle-header above the .toggle-content)
+        var headingText = '';
+        var parentContent = section.closest('.toggle-content');
+        if (parentContent) {
+          var toggleHeader = parentContent.previousElementSibling;
+          if (toggleHeader) {
+            var hEl = toggleHeader.querySelector('h2, h3');
+            if (hEl) headingText = hEl.textContent.trim();
+          }
+        }
+        if (headingText) {
+          lines.push('### ' + headingText);
+          lines.push('');
+        }
+
+        // Tasks
+        var items = section.querySelectorAll('.checklist-item');
+        if (items.length > 0) {
+          items.forEach(function(item) {
+            var cb = item.querySelector('.checklist-checkbox');
+            var txt = item.querySelector('.checklist-text');
+            if (cb && txt) {
+              lines.push('- [' + (cb.checked ? 'x' : ' ') + '] ' + txt.textContent.trim());
+            }
+          });
+          lines.push('');
+        }
+
+        // Progress
+        var progressEl = document.getElementById(checklistId + '-label');
+        if (progressEl && items.length > 0) {
+          lines.push('**Progress:** ' + progressEl.textContent.trim());
+          lines.push('');
+        }
+
+        // Notes
+        var notesEl = section.querySelector('.notes-textarea');
+        var notesText = notesEl ? notesEl.value.trim() : '';
+        if (notesText) {
+          lines.push('**Notes:**');
+          lines.push(notesText);
+          lines.push('');
+        }
+      });
+
+      return lines.join('\n');
+    }
+
+    /**
+     * Extract markdown for a single tab panel or the whole page.
+     * panelId: id of tab panel element, or null for single-page layouts
+     * title: display label for this tab/page
+     */
+    function extractTabMarkdown(panelId, title) {
+      var appTitle = getAppTitle();
+      var container = panelId ? document.getElementById(panelId) : null;
+
+      var md = '# Session Recap \u2014 ' + appTitle + '\n';
+      md += '*Generated: ' + getTimestamp() + '*\n\n---\n\n';
+      md += buildMarkdownForContainer(container, title || appTitle);
+
+      showMarkdownModal(md, 'Session Recap \u2014 ' + (title || appTitle));
+    }
+
+    /**
+     * Export ALL tabs (or all sections for single-page) in one document.
+     */
+    function exportSessionRecap() {
+      var appTitle = getAppTitle();
+
+      var md = '# Full Session Recap \u2014 ' + appTitle + '\n';
+      md += '*Generated: ' + getTimestamp() + '*\n\n---\n\n';
+
+      var panels = document.querySelectorAll('.tab-panel');
+      if (panels.length > 0) {
+        // Multi-tab layout
+        panels.forEach(function(panel) {
+          var tabBtnId = panel.getAttribute('aria-labelledby');
+          var tabBtn = tabBtnId ? document.getElementById(tabBtnId) : null;
+          var tabTitle = tabBtn ? tabBtn.textContent.trim() : (panel.id || 'Section');
+          md += buildMarkdownForContainer(panel, tabTitle);
+          md += '\n---\n\n';
+        });
+      } else {
+        // Single-page layout
+        md += buildMarkdownForContainer(null, appTitle);
+      }
+
+      showMarkdownModal(md, 'Full Session Recap \u2014 ' + appTitle);
+    }
+
+    function getAppTitle() {
+      var h1 = document.querySelector('.app-header h1');
+      return h1 ? h1.textContent.trim() : 'Session';
+    }
+
+    function getTimestamp() {
+      return new Date().toLocaleString('en-US', { dateStyle: 'long', timeStyle: 'short' });
+    }
+
+    /* ============================================================
+       MODAL CONTROLS
+    ============================================================ */
+    function showMarkdownModal(md, title) {
+      var modal = document.getElementById('md-modal');
+      document.getElementById('md-modal-title').textContent = title;
+      document.getElementById('md-modal-content').value = md;
+      modal.style.display = 'flex';
+      setTimeout(function() {
+        document.getElementById('md-copy-btn').focus();
+      }, 60);
+    }
+
+    function closeMarkdownModal() {
+      document.getElementById('md-modal').style.display = 'none';
+    }
+
+    function copyModalContent() {
+      var content = document.getElementById('md-modal-content').value;
+      var btn = document.getElementById('md-copy-btn');
+      navigator.clipboard.writeText(content).then(function() {
+        btn.textContent = 'Copied \u2713';
+        setTimeout(function() { btn.textContent = 'Copy to Clipboard'; }, 2000);
+      });
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        var modal = document.getElementById('md-modal');
+        if (modal && modal.style.display !== 'none') closeMarkdownModal();
+      }
+    });
+
+    /* ============================================================
+       SCROLL TO TOP
+    ============================================================ */
+    var scrollBtn = document.getElementById('scroll-top-btn');
+    window.addEventListener('scroll', function() {
+      scrollBtn.classList.toggle('is-visible', window.scrollY > 600);
+    }, { passive: true });
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+  </script>
+</body>
+</html>

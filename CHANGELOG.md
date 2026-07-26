@@ -16,6 +16,9 @@ All material public changes to the full/REFIT skills collection are recorded her
 - Initial `presentation-deck-builder-v2.0.0` release with a verified ZIP asset
 - Verified `skills.sh` discovery, project installation, package equality, and first production build
 - Immutable current GitHub Action pins and weekly Dependabot coverage for actions and npm packages
+- Consolidated 31 curated portable skills from `fullREFIT/claude-agent-skills` into the canonical `skills/` directory
+- Added collection-wide manifest entries, frontmatter validation, and public-safety scanning
+- Joined the historical source repository into the canonical Git history
 
 ### Moved
 

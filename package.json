@@ -13,7 +13,8 @@
     "check:repo": "python3 scripts/validate-repository.py",
     "check:project": "npm run check --prefix presentation-deck-builder-skill",
     "check:renderer": "npm run validate --prefix presentation-deck-builder-skill/skill/presentation-deck-builder-v2/assets/renderer && npm test --prefix presentation-deck-builder-skill/skill/presentation-deck-builder-v2/assets/renderer && npm run typecheck --prefix presentation-deck-builder-skill/skill/presentation-deck-builder-v2/assets/renderer && npm run build --prefix presentation-deck-builder-skill/skill/presentation-deck-builder-v2/assets/renderer",
-    "check": "npm run check:repo && npm run check:project && npm run check:renderer"
+    "check": "npm run check:repo && npm run check:collection && npm run check:project && npm run check:renderer",
+    "check:collection": "python3 scripts/validate-imported-skills.py"
   },
   "packageManager": "npm@10.9.4"
 }

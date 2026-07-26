@@ -43,6 +43,63 @@ python3 scripts/list-skills.py
 
 Machine-readable catalog: [skills-manifest.json](skills-manifest.json)
 
+## Portable agent skill collection
+
+The canonical repository also contains 31 portable skills for agentskills.io-compatible tools. Discover the public inventory before installing:
+
+```bash
+npx skills@latest add fullREFIT/skills --list --full-depth
+```
+
+Install one skill by its catalog name:
+
+```bash
+npx skills@latest add fullREFIT/skills \
+  --skill skill-architect \
+  --agent claude-code \
+  --yes \
+  --copy \
+  --full-depth
+```
+
+Expected result: the selected folder is copied into `.claude/skills/`. Imported skills are marked `beta` until their individual end-to-end user workflow has been reverified from this canonical repository.
+
+| Skill | What it does | Status |
+| --- | --- | --- |
+| [1pw-env](skills/1pw-env/) | 1Password credential management for development environments — sync secrets to `~/.env.mcp` via `op` CLI | `beta` |
+| [claude-md-forge](skills/claude-md-forge/) | Distill source material (docs, transcripts, codebases) into optimized CLAUDE.md / AGENTS.md files | `beta` |
+| [claude-release-guide](skills/claude-release-guide/) | Convert source material about a Claude product release into a verified, teaching-grade implementation guide | `beta` |
+| [clearpath](skills/clearpath/) | Enforce a consistent file and folder naming convention system (LF/SF/LIC/LI prefixes) across a project | `beta` |
+| [deep-save](skills/deep-save/) | Extract long conversations into a knowledge MCP (e.g., Open Brain) with signal/noise triage and permanence scoring | `beta` |
+| [gamma-optimization](skills/gamma-claude-skill/) | Optimize and produce content specifically for the Gamma.app presentation platform | `beta` |
+| [github-repo-setup](skills/github-repo-setup/) | Universal GitHub repository setup — README, .gitignore, branch protection, CI scaffolding | `beta` |
+| [gpt-5-6-relay](skills/gpt-5-6-relay/) | Route tasks to GPT-5.6 threads (Sol/Terra/Luna tiers) via API relay | `beta` |
+| [instagram-carousel-forge](skills/instagram-carousel-forge/) | Produce Instagram carousel PNG sets from any content input | `beta` |
+| [interactive-checklist-skill](skills/interactive-checklist-skill/) | Build interactive HTML checklists with progress tracking, completion states, and export | `beta` |
+| [linkedin-carousel-forge](skills/linkedin-carousel-forge/) | Produce LinkedIn carousel PDFs and infographic PDFs from content input — configure brand tokens in `config.example.md` | `beta` |
+| [logo-designer](skills/logo-designer/) | AI-assisted logo concept and prompt generation using professional design studio methodologies | `beta` |
+| [loop-goal-triage](skills/loop-goal-triage/) | Triage any task to the right execution method: plain prompt, /goal, /loop, dynamic workflow, or Routine | `beta` |
+| [plan-execute-router](skills/plan-execute-router/) | Split plan and execute phases to different Claude tiers for cost optimization | `beta` |
+| [prep-project](skills/prep-project/) | Analyze a project folder and produce executor-ready task spec packages routed to Cowork or the Claude Code task orchestrator | `beta` |
+| [project-doc-refresh](skills/project-doc-refresh/) | Three-phase audit → research → diff workflow to keep project documentation current | `beta` |
+| [project-orchestrator](skills/project-orchestrator/) | Decompose projects into routed task plans across Claude Cowork, Claude Code, Cursor, Warp.dev, n8n, and other AI tools | `beta` |
+| [proof-shortio-airtable](skills/proof-shortio-airtable/) | Create a Proof entry, generate a Short.io short link, and log both to an Airtable record in one command — configure via env vars | `beta` |
+| [script-forge](skills/script-forge/) | Write YouTube teleprompter scripts from source material — enforces creator voice, anti-patterns, editorial discipline, and structured narrative | `beta` |
+| [signal-scanner](skills/signal-scanner/) | Scan your own builds, projects, and completed work to extract high-credibility content signals and proof artifacts | `beta` |
+| [skill-architect](skills/skill-architect/) | Create, audit, improve, and package agent skills following the agentskills.io open standard | `beta` |
+| [skill-creator](skills/skill-creator/) | Step-by-step guide for creating new agent skills from scratch | `beta` |
+| [skill-translate](skills/skill-translate/) | Port skills across platforms (Claude Code ↔ Codex ↔ Cursor ↔ deepagents) | `beta` |
+| [slack-gif-creator](skills/slack-gif-creator/) | Create animated GIFs and emoji animations optimized for Slack size constraints | `beta` |
+| [sop-generator](skills/sop-generator/) | Generate structured Standard Operating Procedures from process descriptions | `beta` |
+| [start-session](skills/start-session/) | Start or resume a Claude session — loads active tasks from a knowledge MCP, surfaces goals, and establishes working context | `beta` |
+| [tiktok-carousel-forge](skills/tiktok-carousel-forge/) | Produce TikTok vertical carousel PNG sets — configure brand tokens in `config.example.md` | `beta` |
+| [trafilatura-research](skills/trafilatura-research/) | Web content extraction and research using Trafilatura and related scraping tools | `beta` |
+| [vibe-coding-router](skills/vibe-coding-router/) | Route AI-assisted builds through the right SDLC phase (plan, scaffold, implement, review, ship) | `beta` |
+| [web-app-builder](skills/web-app-builder/) | Generate self-contained HTML/CSS/JS web apps and interactive tools from specifications | `beta` |
+| [youtube-screen-share-forge](skills/youtube-screen-share-forge/) | Produce branded full-screen HTML presentation slides for YouTube screen sharing via Ecamm Live — configure brand tokens in `config.example.md` | `beta` |
+
+The consolidation decision, safety boundary, and verification contract are recorded in [Claude Agent Skills consolidation](docs/CLAUDE-AGENT-SKILLS-MIGRATION.md).
+
 ## What makes a full/REFIT public skill
 
 Every published skill must provide:
@@ -102,9 +159,9 @@ A passing run confirms repository structure, public-data safety, links, landing-
 
 ## Add another skill
 
-1. Read [Repository User Guide SOP](docs/REPOSITORY-USER-GUIDE-SOP.md).
-2. Create one top-level folder whose name ends in `-skill`.
-3. Include the required user, technical, security, and package files.
+1. For a full public project, read [Repository User Guide SOP](docs/REPOSITORY-USER-GUIDE-SOP.md).
+2. Put full public projects in a top-level `-skill` folder. Put portable SKILL.md packages under `skills/<name>/`.
+3. Include the files required for that publication tier, and do not claim untested compatibility.
 4. Add the skill to `skills-manifest.json` and the catalog above.
 5. Add its checks to the root `package.json` and CI workflow.
 6. Run `npm run check` before opening a pull request.

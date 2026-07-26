@@ -138,13 +138,25 @@ Create the initial `presentation-deck-builder-v2.0.0` release from the canonical
 
 ### Third-party installer test
 
-Test `skills.sh` discovery and installation from a clean temporary directory. Advertise the one-line command only after the exact public command works and installs the intended nested skill.
+Status: implemented and verified on 2026-07-26.
 
-Completion criterion:
+The clean `skills.sh` test discovered exactly one skill and installed it project-locally for Claude Code. The installed 35-file package matched every Git-tracked source file byte for byte. The installed copy generated an isolated Carbon Forge renderer, validated its sample report, passed 12 tests, passed TypeScript, and produced a production build.
+
+Verified command:
+
+```bash
+npx skills@latest add fullREFIT/skills \
+  --skill presentation-deck-builder-v2 \
+  --agent claude-code \
+  --yes \
+  --copy
+```
+
+Completion criteria met:
 
 - Fresh install locates one intended `SKILL.md`.
 - Installed package contains its references, scripts, assets, renderer, guide, license, and trademark notice.
-- The installed package validates and can produce the sample deck.
+- The installed package validates and produces the sample deck.
 
 ### Claude Code plugin pilot
 

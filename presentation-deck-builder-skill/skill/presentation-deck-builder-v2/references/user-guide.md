@@ -62,7 +62,23 @@ unzip presentation-deck-builder-v2.zip
 cp -R presentation-deck-builder-v2 ~/.claude/skills/
 ```
 
-Project-only installation:
+Verified one-command project installation:
+
+Run this from the root folder of the project where Claude Code should use the skill:
+
+```bash
+npx skills@latest add fullREFIT/skills \
+  --skill presentation-deck-builder-v2 \
+  --agent claude-code \
+  --yes \
+  --copy
+```
+
+This command downloads the public repository and copies the complete skill into `.claude/skills/presentation-deck-builder-v2` for that project. It requires Node.js, npm, and an internet connection.
+
+**Expected result:** the installer reports `Installation complete`, and `npx skills@latest list --json` lists `presentation-deck-builder-v2` with project scope.
+
+Manual project-only installation:
 
 ```bash
 mkdir -p .claude/skills

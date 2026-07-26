@@ -8,6 +8,20 @@ Practical, inspectable agent skills with working examples, validation, and guide
 
 Open the skill page in the catalog below. Each skill has a plain-language guide, a direct download, a first-success walkthrough, and troubleshooting steps.
 
+### I use Claude Code
+
+From the root of your project, run:
+
+```bash
+npx skills@latest add fullREFIT/skills \
+  --skill presentation-deck-builder-v2 \
+  --agent claude-code \
+  --yes \
+  --copy
+```
+
+Expected result: the complete skill is copied to `.claude/skills/presentation-deck-builder-v2`. This path was verified from a clean project on 2026-07-26.
+
 ### I want the source
 
 ```bash

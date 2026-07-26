@@ -19,6 +19,502 @@
       "download": "https://fullrefit-presentation-deck-builder.vercel.app/downloads/presentation-deck-builder-v2.zip",
       "website": "https://fullrefit-presentation-deck-builder.vercel.app",
       "license": "MIT"
+    },
+    {
+      "id": "1pw-env",
+      "name": "1pw-env",
+      "status": "beta",
+      "path": "skills/1pw-env",
+      "projectPath": "skills/1pw-env",
+      "description": "1Password credential management for development environments — sync secrets to `~/.env.mcp` via `op` CLI",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/1pw-env/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/1pw-env",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "claude-md-forge",
+      "name": "claude-md-forge",
+      "status": "beta",
+      "path": "skills/claude-md-forge",
+      "projectPath": "skills/claude-md-forge",
+      "description": "Distill source material (docs, transcripts, codebases) into optimized CLAUDE.md / AGENTS.md files",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/claude-md-forge/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/claude-md-forge",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "claude-release-guide",
+      "name": "claude-release-guide",
+      "status": "beta",
+      "path": "skills/claude-release-guide",
+      "projectPath": "skills/claude-release-guide",
+      "description": "Convert source material about a Claude product release into a verified, teaching-grade implementation guide",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/claude-release-guide/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/claude-release-guide",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "clearpath",
+      "name": "clearpath",
+      "status": "beta",
+      "path": "skills/clearpath",
+      "projectPath": "skills/clearpath",
+      "description": "Enforce a consistent file and folder naming convention system (LF/SF/LIC/LI prefixes) across a project",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/clearpath/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/clearpath",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "deep-save",
+      "name": "deep-save",
+      "status": "beta",
+      "path": "skills/deep-save",
+      "projectPath": "skills/deep-save",
+      "description": "Extract long conversations into a knowledge MCP (e.g., Open Brain) with signal/noise triage and permanence scoring",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/deep-save/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/deep-save",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "gamma-optimization",
+      "name": "gamma-optimization",
+      "status": "beta",
+      "path": "skills/gamma-claude-skill",
+      "projectPath": "skills/gamma-claude-skill",
+      "description": "Optimize and produce content specifically for the Gamma.app presentation platform",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/gamma-claude-skill/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/gamma-claude-skill",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "github-repo-setup",
+      "name": "github-repo-setup",
+      "status": "beta",
+      "path": "skills/github-repo-setup",
+      "projectPath": "skills/github-repo-setup",
+      "description": "Universal GitHub repository setup — README, .gitignore, branch protection, CI scaffolding",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/github-repo-setup/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/github-repo-setup",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "gpt-5-6-relay",
+      "name": "gpt-5-6-relay",
+      "status": "beta",
+      "path": "skills/gpt-5-6-relay",
+      "projectPath": "skills/gpt-5-6-relay",
+      "description": "Route tasks to GPT-5.6 threads (Sol/Terra/Luna tiers) via API relay",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/gpt-5-6-relay/SKILL.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/gpt-5-6-relay",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "instagram-carousel-forge",
+      "name": "instagram-carousel-forge",
+      "status": "beta",
+      "path": "skills/instagram-carousel-forge",
+      "projectPath": "skills/instagram-carousel-forge",
+      "description": "Produce Instagram carousel PNG sets from any content input",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/instagram-carousel-forge/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/instagram-carousel-forge",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "interactive-checklist-skill",
+      "name": "interactive-checklist-skill",
+      "status": "beta",
+      "path": "skills/interactive-checklist-skill",
+      "projectPath": "skills/interactive-checklist-skill",
+      "description": "Build interactive HTML checklists with progress tracking, completion states, and export",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/interactive-checklist-skill/SKILL.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/interactive-checklist-skill",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "linkedin-carousel-forge",
+      "name": "linkedin-carousel-forge",
+      "status": "beta",
+      "path": "skills/linkedin-carousel-forge",
+      "projectPath": "skills/linkedin-carousel-forge",
+      "description": "Produce LinkedIn carousel PDFs and infographic PDFs from content input — configure brand tokens in `config.example.md`",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/linkedin-carousel-forge/SKILL.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/linkedin-carousel-forge",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "logo-designer",
+      "name": "logo-designer",
+      "status": "beta",
+      "path": "skills/logo-designer",
+      "projectPath": "skills/logo-designer",
+      "description": "AI-assisted logo concept and prompt generation using professional design studio methodologies",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/logo-designer/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/logo-designer",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "loop-goal-triage",
+      "name": "loop-goal-triage",
+      "status": "beta",
+      "path": "skills/loop-goal-triage",
+      "projectPath": "skills/loop-goal-triage",
+      "description": "Triage any task to the right execution method: plain prompt, /goal, /loop, dynamic workflow, or Routine",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/loop-goal-triage/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/loop-goal-triage",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "plan-execute-router",
+      "name": "plan-execute-router",
+      "status": "beta",
+      "path": "skills/plan-execute-router",
+      "projectPath": "skills/plan-execute-router",
+      "description": "Split plan and execute phases to different Claude tiers for cost optimization",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/plan-execute-router/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/plan-execute-router",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "prep-project",
+      "name": "prep-project",
+      "status": "beta",
+      "path": "skills/prep-project",
+      "projectPath": "skills/prep-project",
+      "description": "Analyze a project folder and produce executor-ready task spec packages routed to Cowork or the Claude Code task orchestrator",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/prep-project/SKILL.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/prep-project",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "project-doc-refresh",
+      "name": "project-doc-refresh",
+      "status": "beta",
+      "path": "skills/project-doc-refresh",
+      "projectPath": "skills/project-doc-refresh",
+      "description": "Three-phase audit → research → diff workflow to keep project documentation current",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/project-doc-refresh/SKILL.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/project-doc-refresh",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "project-orchestrator",
+      "name": "project-orchestrator",
+      "status": "beta",
+      "path": "skills/project-orchestrator",
+      "projectPath": "skills/project-orchestrator",
+      "description": "Decompose projects into routed task plans across Claude Cowork, Claude Code, Cursor, Warp.dev, n8n, and other AI tools",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/project-orchestrator/SKILL.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/project-orchestrator",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "proof-shortio-airtable",
+      "name": "proof-shortio-airtable",
+      "status": "beta",
+      "path": "skills/proof-shortio-airtable",
+      "projectPath": "skills/proof-shortio-airtable",
+      "description": "Create a Proof entry, generate a Short.io short link, and log both to an Airtable record in one command — configure via env vars",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/proof-shortio-airtable/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/proof-shortio-airtable",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "script-forge",
+      "name": "script-forge",
+      "status": "beta",
+      "path": "skills/script-forge",
+      "projectPath": "skills/script-forge",
+      "description": "Write YouTube teleprompter scripts from source material — enforces creator voice, anti-patterns, editorial discipline, and structured narrative",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/script-forge/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/script-forge",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "signal-scanner",
+      "name": "signal-scanner",
+      "status": "beta",
+      "path": "skills/signal-scanner",
+      "projectPath": "skills/signal-scanner",
+      "description": "Scan your own builds, projects, and completed work to extract high-credibility content signals and proof artifacts",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/signal-scanner/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/signal-scanner",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "skill-architect",
+      "name": "skill-architect",
+      "status": "beta",
+      "path": "skills/skill-architect",
+      "projectPath": "skills/skill-architect",
+      "description": "Create, audit, improve, and package agent skills following the agentskills.io open standard",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/skill-architect/SKILL.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/skill-architect",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "skill-creator",
+      "name": "skill-creator",
+      "status": "beta",
+      "path": "skills/skill-creator",
+      "projectPath": "skills/skill-creator",
+      "description": "Step-by-step guide for creating new agent skills from scratch",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/skill-creator/SKILL.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/skill-creator",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "skill-translate",
+      "name": "skill-translate",
+      "status": "beta",
+      "path": "skills/skill-translate",
+      "projectPath": "skills/skill-translate",
+      "description": "Port skills across platforms (Claude Code ↔ Codex ↔ Cursor ↔ deepagents)",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/skill-translate/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/skill-translate",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "slack-gif-creator",
+      "name": "slack-gif-creator",
+      "status": "beta",
+      "path": "skills/slack-gif-creator",
+      "projectPath": "skills/slack-gif-creator",
+      "description": "Create animated GIFs and emoji animations optimized for Slack size constraints",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/slack-gif-creator/SKILL.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/slack-gif-creator",
+      "license": "Apache-2.0",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "sop-generator",
+      "name": "sop-generator",
+      "status": "beta",
+      "path": "skills/sop-generator",
+      "projectPath": "skills/sop-generator",
+      "description": "Generate structured Standard Operating Procedures from process descriptions",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/sop-generator/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/sop-generator",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "start-session",
+      "name": "start-session",
+      "status": "beta",
+      "path": "skills/start-session",
+      "projectPath": "skills/start-session",
+      "description": "Start or resume a Claude session — loads active tasks from a knowledge MCP, surfaces goals, and establishes working context",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/start-session/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/start-session",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "tiktok-carousel-forge",
+      "name": "tiktok-carousel-forge",
+      "status": "beta",
+      "path": "skills/tiktok-carousel-forge",
+      "projectPath": "skills/tiktok-carousel-forge",
+      "description": "Produce TikTok vertical carousel PNG sets — configure brand tokens in `config.example.md`",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/tiktok-carousel-forge/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/tiktok-carousel-forge",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "trafilatura-research",
+      "name": "trafilatura-research",
+      "status": "beta",
+      "path": "skills/trafilatura-research",
+      "projectPath": "skills/trafilatura-research",
+      "description": "Web content extraction and research using Trafilatura and related scraping tools",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/trafilatura-research/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/trafilatura-research",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "vibe-coding-router",
+      "name": "vibe-coding-router",
+      "status": "beta",
+      "path": "skills/vibe-coding-router",
+      "projectPath": "skills/vibe-coding-router",
+      "description": "Route AI-assisted builds through the right SDLC phase (plan, scaffold, implement, review, ship)",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/vibe-coding-router/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/vibe-coding-router",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "web-app-builder",
+      "name": "web-app-builder",
+      "status": "beta",
+      "path": "skills/web-app-builder",
+      "projectPath": "skills/web-app-builder",
+      "description": "Generate self-contained HTML/CSS/JS web apps and interactive tools from specifications",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/web-app-builder/SKILL.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/web-app-builder",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
+    },
+    {
+      "id": "youtube-screen-share-forge",
+      "name": "youtube-screen-share-forge",
+      "status": "beta",
+      "path": "skills/youtube-screen-share-forge",
+      "projectPath": "skills/youtube-screen-share-forge",
+      "description": "Produce branded full-screen HTML presentation slides for YouTube screen sharing via Ecamm Live — configure brand tokens in `config.example.md`",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/youtube-screen-share-forge/SKILL.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/youtube-screen-share-forge",
+      "license": "MIT",
+      "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
     }
   ]
 }

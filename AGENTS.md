@@ -7,11 +7,12 @@ Maintain a public collection of practical full/REFIT agent skills that a first-t
 ## Repository rules
 
 - Treat each top-level directory ending in `-skill` as an independently usable public project.
+- Treat each `skills/<name>/` directory as a portable agent-skill package that must contain a valid `SKILL.md`.
 - Keep one canonical user guide for each skill project.
 - Update the root catalog and `skills-manifest.json` whenever a skill is added, renamed, removed, or materially changed.
 - Use synthetic examples only.
 - Keep private paths, credentials, customer data, and internal full/REFIT systems out of public files.
-- Run `npm run check` before reporting a change complete.
+- Run `npm run check` before reporting a change complete. This includes collection frontmatter, manifest parity, and public-safety scanning.
 - Preserve the landing-page URL and direct download URL unless a migration explicitly replaces and verifies them.
 - Use [Repository User Guide SOP](docs/REPOSITORY-USER-GUIDE-SOP.md) for every new or rewritten instruction guide.
 

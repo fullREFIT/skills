@@ -13,7 +13,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PROJECT = ROOT / "presentation-deck-builder-skill"
 OLD_REPOSITORY = "https://github.com/fullREFIT/presentation-deck-builder-skill"
-PRIVATE_PATH_MARKERS = ("/Users/paul", "\\Users\\paul")
+PRIVATE_PATH_MARKERS = ("/Users/" + "paul", "\\Users\\" + "paul")
+SENSITIVE_ID_PATTERNS = {
+    "Airtable identifier": re.compile(r"\b(?:app|tbl|fld|viw)[A-Za-z0-9]{14}\b"),
+    "Slack identifier": re.compile(r"\b[CT]0[A-Z0-9]{8,}\b"),
+    "credential-like token": re.compile(r"\b(?:ghp|github_pat|sk_live|sk_test|xox[baprs])_[A-Za-z0-9_-]{12,}\b"),
+}
 TEXT_SUFFIXES = {
     ".css",
     ".html",
@@ -38,6 +43,7 @@ ROOT_REQUIRED = (
     "CODE_OF_CONDUCT.md",
     "CHANGELOG.md",
     "package.json",
+    "requirements-dev.txt",
     "skills-manifest.json",
     ".github/dependabot.yml",
     ".github/workflows/validate.yml",
@@ -48,7 +54,9 @@ ROOT_REQUIRED = (
     "docs/MATT-POCOCK-SKILLS-ANALYSIS.md",
     "docs/PROMPT-CHANGELOG-fullrefit-skills-migration.md",
     "docs/REPOSITORY-USER-GUIDE-SOP.md",
+    "docs/CLAUDE-AGENT-SKILLS-MIGRATION.md",
     "docs/templates/USER-GUIDE-TEMPLATE.md",
+    "scripts/validate-imported-skills.py",
 )
 PROJECT_REQUIRED = (
     "README.md",
@@ -126,19 +134,22 @@ def validate_skill(errors: list[str]) -> None:
         fail(errors, "SKILL.md frontmatter is missing description")
 
 
-def validate_project_text(errors: list[str]) -> None:
-    for path in PROJECT.rglob("*"):
+def validate_public_text(errors: list[str]) -> None:
+    for path in ROOT.rglob("*"):
         if not path.is_file() or any(part in {"node_modules", "dist", ".git"} for part in path.parts):
             continue
         text = read_text(path)
         if text is None:
             continue
         rel = path.relative_to(ROOT)
-        if OLD_REPOSITORY in text:
+        if PROJECT in path.parents and OLD_REPOSITORY in text:
             fail(errors, f"stale standalone repository URL: {rel}")
         for marker in PRIVATE_PATH_MARKERS:
             if marker in text:
                 fail(errors, f"private machine path in public file: {rel}")
+        for label, pattern in SENSITIVE_ID_PATTERNS.items():
+            if pattern.search(text):
+                fail(errors, f"{label} in public file: {rel}")
 
 
 def validate_markdown_links(errors: list[str]) -> None:
@@ -146,6 +157,10 @@ def validate_markdown_links(errors: list[str]) -> None:
         if any(part in {"node_modules", "dist", ".git"} for part in path.parts):
             continue
         text = path.read_text()
+        # Example links inside fenced or inline code describe hypothetical file
+        # layouts. They are not public navigation links and must not be resolved.
+        text = re.sub(r"```.*?```", "", text, flags=re.DOTALL)
+        text = re.sub(r"`[^`]*`", "", text)
         for raw in LINK_RE.findall(text):
             target = raw.strip().split(" ", 1)[0].strip("<>")
             if not target or target.startswith(("#", "http://", "https://", "mailto:")):
@@ -200,7 +215,7 @@ def main() -> int:
     validate_required(errors)
     validate_manifest(errors)
     validate_skill(errors)
-    validate_project_text(errors)
+    validate_public_text(errors)
     validate_markdown_links(errors)
     validate_automation(errors)
     validate_zip(errors)
@@ -212,8 +227,8 @@ def main() -> int:
     print("Repository validation: PASS")
     print("- root governance and guide standard present")
     print("- manifest paths resolve")
-    print("- one canonical SKILL.md found")
-    print("- no stale standalone URL or private machine path in project files")
+    print("- one canonical Presentation Deck Builder SKILL.md found")
+    print("- no stale project URL, private machine path, private identifier, or credential-like token in public files")
     print("- relative Markdown links resolve")
     print("- GitHub Actions are pinned to immutable commits")
     print("- release and site ZIP files match and have a valid structure")

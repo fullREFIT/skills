@@ -1,0 +1,28 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+
+  - package-ecosystem: npm
+    directory: /presentation-deck-builder-skill
+    schedule:
+      interval: weekly
+    groups:
+      landing-page-dependencies:
+        patterns:
+          - "*"
+
+  - package-ecosystem: npm
+    directory: /presentation-deck-builder-skill/skill/presentation-deck-builder-v2/assets/renderer
+    schedule:
+      interval: weekly
+    groups:
+      renderer-dependencies:
+        patterns:
+          - "*"

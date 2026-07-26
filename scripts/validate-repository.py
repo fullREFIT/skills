@@ -3,8 +3,8 @@
 
 from __future__ import annotations
 
-import json
 import hashlib
+import json
 import re
 import sys
 import zipfile
@@ -37,9 +37,16 @@ ROOT_REQUIRED = (
     "CONTRIBUTING.md",
     "CODE_OF_CONDUCT.md",
     "CHANGELOG.md",
+    "package.json",
     "skills-manifest.json",
+    ".github/dependabot.yml",
+    ".github/workflows/validate.yml",
+    ".github/pull_request_template.md",
+    ".github/ISSUE_TEMPLATE/bug.yml",
+    ".github/ISSUE_TEMPLATE/feature.yml",
     "docs/GITHUB-OPTIMIZATION-PLAN.md",
     "docs/MATT-POCOCK-SKILLS-ANALYSIS.md",
+    "docs/PROMPT-CHANGELOG-fullrefit-skills-migration.md",
     "docs/REPOSITORY-USER-GUIDE-SOP.md",
     "docs/templates/USER-GUIDE-TEMPLATE.md",
 )
@@ -148,6 +155,20 @@ def validate_markdown_links(errors: list[str]) -> None:
                 fail(errors, f"broken relative link in {path.relative_to(ROOT)}: {raw}")
 
 
+def validate_automation(errors: list[str]) -> None:
+    workflow = ROOT / ".github/workflows/validate.yml"
+    text = workflow.read_text()
+    for line in text.splitlines():
+        stripped = line.strip()
+        if not stripped.startswith("uses:"):
+            continue
+        reference = stripped.split("#", 1)[0].strip()
+        if reference.startswith("uses: ./"):
+            continue
+        if not re.search(r"@[0-9a-f]{40}$", reference):
+            fail(errors, f"GitHub Action is not pinned to an immutable commit: {reference}")
+
+
 def validate_zip(errors: list[str]) -> None:
     archive = PROJECT / "downloads/presentation-deck-builder-v2.zip"
     site_archive = PROJECT / "site/public/downloads/presentation-deck-builder-v2.zip"
@@ -181,6 +202,7 @@ def main() -> int:
     validate_skill(errors)
     validate_project_text(errors)
     validate_markdown_links(errors)
+    validate_automation(errors)
     validate_zip(errors)
     if errors:
         print("Repository validation: FAIL")
@@ -193,6 +215,7 @@ def main() -> int:
     print("- one canonical SKILL.md found")
     print("- no stale standalone URL or private machine path in project files")
     print("- relative Markdown links resolve")
+    print("- GitHub Actions are pinned to immutable commits")
     print("- release and site ZIP files match and have a valid structure")
     return 0
 

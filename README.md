@@ -4,9 +4,9 @@ Practical, inspectable agent skills with working examples, validation, and guide
 
 ## Start here
 
-### I want to use a skill without reading code
+### I want to use a stable skill without reading code
 
-Open the skill page in the catalog below. Each skill has a plain-language guide, a direct download, a first-success walkthrough, and troubleshooting steps.
+Open Presentation Deck Builder in the catalog below for its plain-language guide, direct download, first-success walkthrough, and troubleshooting. The portable agent skill collection has a separate beta catalog; each imported skill remains `beta` until its own end-to-end workflow is reverified from this canonical repository.
 
 ### I use Claude Code
 

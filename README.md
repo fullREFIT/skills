@@ -45,7 +45,7 @@ Machine-readable catalog: [skills-manifest.json](skills-manifest.json)
 
 ## Portable agent skill collection
 
-The canonical repository also contains 31 portable skills for agentskills.io-compatible tools. Discover the public inventory before installing:
+The canonical repository also contains 32 portable skills for agentskills.io-compatible tools. Discover the public inventory before installing:
 
 ```bash
 npx skills@latest add fullREFIT/skills --list --full-depth
@@ -87,6 +87,7 @@ Expected result: the selected folder is copied into `.claude/skills/`. Imported 
 | [script-forge](skills/script-forge/) | Write YouTube teleprompter scripts from source material — enforces creator voice, anti-patterns, editorial discipline, and structured narrative | `beta` |
 | [signal-scanner](skills/signal-scanner/) | Scan your own builds, projects, and completed work to extract high-credibility content signals and proof artifacts | `beta` |
 | [skill-architect](skills/skill-architect/) | Create, audit, improve, and package agent skills following the agentskills.io open standard | `beta` |
+| [skill-install-protocol](skills/skill-install-protocol/) | Install, distribute, and verify a completed agent skill across existing client environments | `beta` |
 | [skill-creator](skills/skill-creator/) | Step-by-step guide for creating new agent skills from scratch | `beta` |
 | [skill-translate](skills/skill-translate/) | Port skills across platforms (Claude Code ↔ Codex ↔ Cursor ↔ deepagents) | `beta` |
 | [slack-gif-creator](skills/slack-gif-creator/) | Create animated GIFs and emoji animations optimized for Slack size constraints | `beta` |

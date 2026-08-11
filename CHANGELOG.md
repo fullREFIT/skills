@@ -30,3 +30,9 @@ All material public changes to the full/REFIT skills collection are recorded her
 - Presentation Deck Builder v1 remains separate and unchanged
 - The public landing page and direct ZIP URL remain stable
 - The old GitHub repository URL redirects to the renamed repository
+
+## 2026-08-11
+
+### Added
+
+- `skill-install-protocol` as a beta portable skill for canonical-first installation, existing-client discovery, copy parity, archive checks, and behavioral verification

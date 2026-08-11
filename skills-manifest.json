@@ -357,6 +357,21 @@
       "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
     },
     {
+      "id": "skill-install-protocol",
+      "name": "skill-install-protocol",
+      "status": "beta",
+      "path": "skills/skill-install-protocol",
+      "projectPath": "skills/skill-install-protocol",
+      "description": "Install, distribute, and verify a completed agent skill across existing client environments from one canonical source.",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/skill-install-protocol/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/skill-install-protocol",
+      "license": "MIT"
+    },
+    {
       "id": "skill-creator",
       "name": "skill-creator",
       "status": "beta",

@@ -2,6 +2,8 @@ export const brands = {
   'carbon-forge': {
     label: 'Carbon Forge',
     wordmark: 'full/REFIT',
+    typeLabel: 'Outfit / JetBrains Mono',
+    tone: 'Decisive systems',
     description: 'Built for technical reviews, operating briefs, and implementation decisions.',
     headline: 'Make the recommendation visible.',
     copy: 'Separate source evidence from judgment so the audience can inspect both.',
@@ -25,6 +27,8 @@ export const brands = {
   'tab-squirrel': {
     label: 'TabSquirrel',
     wordmark: 'TabSquirrel',
+    typeLabel: 'Plus Jakarta / IBM Plex Mono',
+    tone: 'Calm technology',
     description: 'Built for calm product education, knowledge organization, and approachable technology.',
     headline: 'Close the tabs. Keep the context.',
     copy: 'Present complex ideas without making the interface feel heavy or mechanical.',
@@ -48,6 +52,8 @@ export const brands = {
   'executive-signal': {
     label: 'Executive Signal',
     wordmark: 'EXECUTIVE SIGNAL',
+    typeLabel: 'Inter / IBM Plex Mono',
+    tone: 'Visible signal',
     description: 'Built for board briefings, priorities, metrics, and high-clarity executive decisions.',
     headline: 'Put the evidence trail beside the call.',
     copy: 'Keep status, risk, and recommendation visible without adding decorative noise.',
@@ -71,6 +77,8 @@ export const brands = {
   'editorial-studio': {
     label: 'Editorial Studio',
     wordmark: 'Editorial Studio',
+    typeLabel: 'Cormorant / IBM Plex Mono',
+    tone: 'Room to unfold',
     description: 'Built for narrative reports, workshops, educational material, and story-led research.',
     headline: 'Give the argument room to unfold.',
     copy: 'Use typography and pacing to support the evidence rather than compete with it.',
@@ -120,6 +128,12 @@ function applyBrand(id) {
   });
   document.querySelectorAll('[data-preview-wordmark]').forEach((node) => {
     node.textContent = brand.wordmark;
+  });
+  document.querySelectorAll('[data-preview-type]').forEach((node) => {
+    node.textContent = brand.typeLabel;
+  });
+  document.querySelectorAll('[data-preview-tone]').forEach((node) => {
+    node.textContent = brand.tone;
   });
 
   const headline = document.querySelector('[data-preview-headline]');

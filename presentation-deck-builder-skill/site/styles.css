@@ -540,8 +540,8 @@ summary:focus-visible {
   color: var(--color-carbon);
   display: grid;
   gap: var(--space-4);
-  grid-template-columns: 2.5rem 1fr auto;
-  min-height: 88px;
+  grid-template-columns: 2.5rem minmax(0, 1fr) minmax(150px, 0.72fr) auto;
+  min-height: 132px;
   padding: var(--space-4) 0;
   text-align: left;
   width: 100%;
@@ -556,14 +556,14 @@ summary:focus-visible {
   color: var(--color-red);
 }
 
-.brand-option i {
+.brand-radio {
   border: 1px solid var(--color-soft);
   border-radius: 50%;
   height: 14px;
   width: 14px;
 }
 
-.brand-option.is-active i {
+.brand-option.is-active .brand-radio {
   background: var(--color-red);
   border-color: var(--color-red);
   box-shadow: inset 0 0 0 3px var(--color-ash);
@@ -589,6 +589,72 @@ summary:focus-visible {
   font-size: var(--text-sm);
   margin-top: var(--space-1);
 }
+
+.brand-option-copy {
+  min-width: 0;
+}
+
+.brand-guideline {
+  align-self: stretch;
+  border-left: 1px solid var(--color-soft);
+  display: grid;
+  gap: 0.28rem;
+  grid-template-rows: 1fr auto auto;
+  min-width: 0;
+  padding-left: var(--space-4);
+}
+
+.brand-swatches {
+  display: grid;
+  gap: 2px;
+  grid-template-columns: repeat(4, 1fr);
+  min-height: 28px;
+}
+
+.brand-swatches i { display: block; }
+
+.brand-guideline b,
+.brand-guideline em {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.brand-guideline b {
+  color: var(--color-echo);
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.04em;
+}
+
+.brand-guideline em {
+  color: var(--color-carbon);
+  font-size: 0.72rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.brand-carbon .brand-guideline { font-family: 'Outfit', sans-serif; }
+.brand-carbon .brand-swatches i:nth-child(1) { background: #121010; }
+.brand-carbon .brand-swatches i:nth-child(2) { background: #d43b2a; }
+.brand-carbon .brand-swatches i:nth-child(3) { background: #ffb400; }
+.brand-carbon .brand-swatches i:nth-child(4) { background: #f2f0ee; border: 1px solid #d8d4d1; }
+.brand-tab .brand-guideline { font-family: 'Plus Jakarta Sans', sans-serif; }
+.brand-tab .brand-swatches i:nth-child(1) { background: #1a1a1a; }
+.brand-tab .brand-swatches i:nth-child(2) { background: #cc5833; }
+.brand-tab .brand-swatches i:nth-child(3) { background: #2e4036; }
+.brand-tab .brand-swatches i:nth-child(4) { background: #f2f0e9; border: 1px solid #ddd8ce; }
+.brand-executive .brand-guideline { font-family: 'Inter', sans-serif; }
+.brand-executive .brand-swatches i:nth-child(1) { background: #0b132b; }
+.brand-executive .brand-swatches i:nth-child(2) { background: #2f6bff; }
+.brand-executive .brand-swatches i:nth-child(3) { background: #2dd4bf; }
+.brand-executive .brand-swatches i:nth-child(4) { background: #f4f7fb; border: 1px solid #dce3ee; }
+.brand-editorial .brand-guideline { font-family: 'Cormorant Garamond', serif; }
+.brand-editorial .brand-swatches i:nth-child(1) { background: #24211d; }
+.brand-editorial .brand-swatches i:nth-child(2) { background: #46614f; }
+.brand-editorial .brand-swatches i:nth-child(3) { background: #b7784a; }
+.brand-editorial .brand-swatches i:nth-child(4) { background: #f6f3ee; border: 1px solid #e4ddd1; }
 
 .custom-option {
   grid-template-columns: 2.5rem 1fr;
@@ -816,7 +882,7 @@ summary:focus-visible {
 
 .security-band {
   align-items: end;
-  background: var(--color-red-surface);
+  background: var(--color-echo);
   color: var(--color-white);
   display: grid;
   gap: var(--space-10);
@@ -832,6 +898,15 @@ summary:focus-visible {
   font-size: var(--text-md);
   margin: 0;
   max-width: 42rem;
+}
+
+.security-link {
+  color: var(--color-gold) !important;
+}
+
+.security-link:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
 }
 
 .faq-section {
@@ -921,7 +996,7 @@ summary:focus-visible {
 
 .site-footer > div {
   align-items: center;
-  color: var(--color-soft);
+  color: var(--color-gold);
   display: flex;
   flex-wrap: wrap;
   font-family: var(--font-mono);
@@ -1024,6 +1099,23 @@ summary:focus-visible {
   .specification {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
+  }
+
+  .brand-option {
+    grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+    min-height: 150px;
+  }
+
+  .brand-guideline {
+    border-left: 0;
+    border-top: 1px solid var(--color-soft);
+    grid-column: 2 / -1;
+    padding-left: 0;
+    padding-top: var(--space-3);
+  }
+
+  .brand-guideline .brand-swatches {
+    min-height: 22px;
   }
 
   .hero h1 {

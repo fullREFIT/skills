@@ -45,7 +45,7 @@ Machine-readable catalog: [skills-manifest.json](skills-manifest.json)
 
 ## Portable agent skill collection
 
-The canonical repository also contains 32 portable skills for agentskills.io-compatible tools. Discover the public inventory before installing:
+The canonical repository also contains 33 portable skills for agentskills.io-compatible tools. Discover the public inventory before installing:
 
 ```bash
 npx skills@latest add fullREFIT/skills --list --full-depth
@@ -82,6 +82,7 @@ Expected result: the selected folder is copied into `.claude/skills/`. Imported 
 | [plan-execute-router](skills/plan-execute-router/) | Split plan and execute phases to different Claude tiers for cost optimization | `beta` |
 | [prep-project](skills/prep-project/) | Analyze a project folder and produce executor-ready task spec packages routed to Cowork or the Claude Code task orchestrator | `beta` |
 | [project-doc-refresh](skills/project-doc-refresh/) | Three-phase audit → research → diff workflow to keep project documentation current | `beta` |
+| [public-release-audit](skills/public-release-audit/) | Audit skills, prompts, frameworks, and projects for safe public release, privacy, portability, provenance, and packaging | `beta` |
 | [project-orchestrator](skills/project-orchestrator/) | Decompose projects into routed task plans across Claude Cowork, Claude Code, Cursor, Warp.dev, n8n, and other AI tools | `beta` |
 | [proof-shortio-airtable](skills/proof-shortio-airtable/) | Create a Proof entry, generate a Short.io short link, and log both to an Airtable record in one command — configure via env vars | `beta` |
 | [script-forge](skills/script-forge/) | Write YouTube teleprompter scripts from source material — enforces creator voice, anti-patterns, editorial discipline, and structured narrative | `beta` |

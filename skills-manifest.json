@@ -277,6 +277,22 @@
       "provenance": "Consolidated from fullREFIT/claude-agent-skills on 2026-07-26"
     },
     {
+      "id": "public-release-audit",
+      "name": "public-release-audit",
+      "status": "beta",
+      "path": "skills/public-release-audit",
+      "projectPath": "skills/public-release-audit",
+      "description": "Audit skills, prompts, frameworks, and projects for safe public release, privacy, portability, provenance, and packaging",
+      "audiences": [
+        "agent users",
+        "agent builders"
+      ],
+      "guide": "skills/public-release-audit/README.md",
+      "download": "https://github.com/fullREFIT/skills/tree/main/skills/public-release-audit",
+      "license": "MIT",
+      "provenance": "Original full/REFIT skill, generalized for public use on 2026-09-02"
+    },
+    {
       "id": "project-orchestrator",
       "name": "project-orchestrator",
       "status": "beta",

@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-09-02
+
+- Added the generalized `public-release-audit` skill to the portable public collection.
+- Added its README catalog entry and manifest record with beta status pending an end-to-end public install test.
+
 All material public changes to the full/REFIT skills collection are recorded here.
 
 ## 2026-07-26
